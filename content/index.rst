@@ -75,7 +75,6 @@ deploy their codebases. You will learn how to:
    :maxdepth: 1
    :caption: Reference
 
-   quick-reference
    zbibliography
    guide
 
