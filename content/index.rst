@@ -11,8 +11,8 @@ deploy their codebases. You will learn how to:
 - Run tests for your code with CTest.
 - Ensure your build system will work on different platforms.
 - Detect and use external dependencies in your project.
-- Safely and effectively build mixed-language projects (Python+C/C++,
-  Python+Fortran, Fortran+C/C++)
+- Safely and effectively build mixed-language projects (Python-C/C++,
+  Python-Fortran, Fortran-C/C++)
 
 
 .. prereq::
