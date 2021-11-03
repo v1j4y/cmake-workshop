@@ -39,9 +39,6 @@ extensions = [
     "sphinx_coderefinery_branding",
 ]
 
-# configure sphinxcontrib.bibtex
-bibtex_bibfiles = ["bibliography.bib"]
-
 # Settings for myst_nb:
 # https://myst-nb.readthedocs.io/en/latest/use/execute.html#triggering-notebook-execution
 # jupyter_execute_notebooks = "off"
