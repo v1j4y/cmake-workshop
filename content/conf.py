@@ -74,7 +74,7 @@ exclude_patterns = [
 # a list of builtin themes.
 #
 html_theme = "sphinx_rtd_theme"
-html_logo = "img/ENCCS.jpg"
+#html_logo = "img/ENCCS.jpg"
 html_favicon = "img/favicon.ico"
 html_title = project
 
