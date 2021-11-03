@@ -12,20 +12,18 @@
 #
 import os
 import sys
+sys.path.insert(0, os.path.abspath('.'))
 
-sys.path.insert(0, os.path.abspath("."))
-
-sys.path.insert(0, os.path.abspath("."))
 
 # -- Project information -----------------------------------------------------
 
 project = "CMake Workshop"
 copyright = "2020, EuroCC National Competence Centre Sweden"
 author = "Roberto Di Remigio, Kjartan Thor Wikfeldt"
-github_user = "ENCCS"
+github_user = "coderefinery"
 github_repo_name = "cmake-workshop"  # auto-detected from dirname if blank
 github_version = "main"
-conf_py_path = "/content/"  # with leading and trailing slash
+conf_py_path = "/content/" # with leading and trailing slash
 
 # -- General configuration ---------------------------------------------------
 
@@ -36,9 +34,9 @@ extensions = [
     # githubpages just adds a .nojekyll file
     "sphinx.ext.githubpages",
     "sphinx_lesson",
-    #'sphinx.ext.intersphinx',
-    "sphinxcontrib.bibtex",
-    "sphinx.ext.todo",
+    # remove once sphinx_rtd_theme updated for contrast and accessibility:
+    "sphinx_rtd_theme_ext_color_contrast",
+    "sphinx_coderefinery_branding",
 ]
 
 # configure sphinxcontrib.bibtex
@@ -74,9 +72,6 @@ exclude_patterns = [
 # a list of builtin themes.
 #
 html_theme = "sphinx_rtd_theme"
-#html_logo = "img/ENCCS.jpg"
-html_favicon = "img/favicon.ico"
-html_title = project
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -84,7 +79,7 @@ html_title = project
 html_static_path = ["_static"]
 
 # HTML context:
-from os.path import dirname, realpath, basename
+from os.path import basename, dirname, realpath
 
 html_context = {
     "display_github": True,
@@ -102,10 +97,16 @@ todo_include_todos = True
 # :py:mod:`multiprocessing` to link straight to the Python docs of that module.
 # List all available references:
 #   python -msphinx.ext.intersphinx https://docs.python.org/3/objects.inv
+# extensions.append('sphinx.ext.intersphinx')
 # intersphinx_mapping = {
 #    #'python': ('https://docs.python.org/3', None),
 #    #'sphinx': ('https://www.sphinx-doc.org/', None),
-#    }
+#    #'numpy': ('https://numpy.org/doc/stable/', None),
+#    #'scipy': ('https://docs.scipy.org/doc/scipy/reference/', None),
+#    #'pandas': ('https://pandas.pydata.org/docs/', None),
+#    #'matplotlib': ('https://matplotlib.org/', None),
+#    'seaborn': ('https://seaborn.pydata.org/', None),
+# }
 
 # Our own customisation
 from custom import DIRECTIVES, cmake_glossary
