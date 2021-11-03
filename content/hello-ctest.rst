@@ -261,7 +261,7 @@ available properties.
          ``file`` command.
 
    You can download the :download:`complete, working example <code/tarballs/08_ctest-labels_solution.tar.bz2>`.
-   
+
 
 Among the many properties that can be set on tests, we would like to highlight the following:
 

@@ -26,9 +26,9 @@ documented below.
 For MacOS and Linux users
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-MacOS and Linux users can simply open a terminal and install 
+MacOS and Linux users can simply open a terminal and install
 `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_:
-  
+
 - For MacOS see https://docs.conda.io/en/latest/miniconda.html#macosx-installers
 - For Linux see https://docs.conda.io/en/latest/miniconda.html#linux-installers
 
