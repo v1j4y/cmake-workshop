@@ -40,7 +40,7 @@ jobs:
           python-version: 3.8
           mamba-version: "*"
           use-only-tar-bz2: true  # IMPORTANT: This needs to be set for caching to work properly!
-          
+
     - name: Select CMake CLI options
       shell: bash -l {0}
       run: |
@@ -51,7 +51,7 @@ jobs:
            echo "CONF_OPTS=-Ax64" >> $GITHUB_ENV
            echo "BUILD_OPTS=\"--config Release\"" >> $GITHUB_ENV
         fi
-      
+
     - name: Run examples
       shell: bash -l {0}
       run: |
