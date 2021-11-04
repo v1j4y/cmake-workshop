@@ -75,6 +75,7 @@ deploy their codebases. You will learn how to:
    :maxdepth: 1
    :caption: Reference
 
+   resources
    guide
    credits
 
@@ -160,21 +161,3 @@ Type-along
          project(Hello LANGUAGES CXX)
 
    The content can be hidden by clicking the toggle.
-
-
-
-See also
---------
-
-There are many free resources online regarding CMake:
-
-- The `CMake official documentation
-  <https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html>`_.
-- The `CMake tutorial <https://cmake.org/cmake/help/v3.19/guide/tutorial/index.html#guide:CMake%20Tutorial>`_.
-- The `HEP Software Foundation <https://hsf-training.github.io/hsf-training-cmake-webpage/>`_ training course.
-
-
-You can also consult the following books:
-
-- **Professional CMake: A Practical Guide** by Craig Scott.
-- **CMake Cookbook** by Radovan Bast and Roberto Di Remigio. The accompanying repository is on `GitHub <https://github.com/dev-cafe/cmake-cookbook>`_
