@@ -9,7 +9,7 @@ on your own computer.
 These instructions are based on installing compilers and CMake via the `Conda
 package and enviroment manager <https://docs.conda.io/en/latest/>`_, as it
 provides a convenient way to install binary packages in an isolated software
-environment.
+environment, without affecting the rest of your operating system.
 
 
 For Windows users
@@ -27,7 +27,7 @@ documented below.
 For MacOS and Linux users
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-MacOS and Linux users can simply open a terminal and install
+MacOS and Linux users can open a terminal and install
 `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_:
 
 - For MacOS see https://docs.conda.io/en/latest/miniconda.html#macosx-installers
@@ -40,8 +40,9 @@ Creating an environment and installing packages
 Once you have ``conda`` installed (and WSL if you're on Windows) you
 can use the :download:`environment.yml <../environment.yml>` file to
 install the dependencies.  First save it to your hard drive by
-clicking the link, and then in a terminal navigate to where you saved
-the file and type::
+clicking the link. On your hard-drive move the file to a folder where you
+would like to work in during the workshop, and then in a terminal navigate to the folder
+and type::
 
   conda env create -f environment.yml
 
