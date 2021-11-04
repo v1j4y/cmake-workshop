@@ -8,6 +8,16 @@ The lesson file structure and browsing layout is inspired by and derived from
 most of their license text.
 
 
+Summary of changes made
+-----------------------
+
+This present workshop material is derived work from the workshop organized
+by ENCCS (see below).
+
+- The material has been shortened and reordered
+- (here I will emphasize other changes as they come in)
+
+
 Instructional material
 ----------------------
 
