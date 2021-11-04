@@ -53,9 +53,10 @@ You will learn how to:
    setup
 
 
-This schedule below is shifting. I am reworking it towards the draft
+The schedule/material left is shifting. I am reworking it towards the draft
 :ref:`schedule-draft` in the instructor guide, from a 2-day schedule towards a
 3-hours schedule. This restructuring will take 2-3 more days.
+
 
 .. toctree::
    :hidden:
@@ -71,23 +72,6 @@ This schedule below is shifting. I am reworking it towards the draft
    dependencies
    cxx-fortran
    fetch-content
-
-
-.. see also the schedule in guide.rst
-
-.. csv-table::
-   :widths: auto
-   :delim: ;
-
-   30 min ; :doc:`hello-cmake`
-   30 min ; :doc:`cmake-syntax`
-   30 min ; :doc:`hello-ctest`
-   30 min ; :doc:`environment`
-   30 min ; :doc:`probing`
-   40 min ; :doc:`targets`
-   40 min ; :doc:`dependencies`
-   40 min ; :doc:`cxx-fortran`
-   30 min ; :doc:`fetch-content`
 
 
 .. toctree::

@@ -1,4 +1,4 @@
-program hello_world
+program example
 
   use greeting, only: say_hello
 

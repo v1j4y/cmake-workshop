@@ -1,4 +1,4 @@
-.. _hello-cmake:
+.. _sources-to-executables:
 
 
 From sources to executables
@@ -126,136 +126,62 @@ We refer to these stages as *CMake times* and each tool is appropriate at a spec
    <https://creativecommons.org/licenses/by-sa/4.0/legalcode>`_.
 
 
+.. _hello-world-executable:
 
+Type-along: building an executable
+----------------------------------
 
-
-Hello, CMake!
--------------
-
-.. typealong:: Compiling "Hello, world" with CMake
+.. exercise:: Compiling "Hello, world" with CMake
 
    We will now proceed to compile a single source file to an executable. Choose
    your favorite language and start typing along!
 
-   .. tabs::
+   1. Create a new folder and in the folder create a source file:
 
-      .. tab:: C++
+     .. tabs::
 
-         Download  :download:`scaffold project <code/tarballs/00_hello-cxx.tar.bz2>`.
+        .. tab:: C++
 
-         .. literalinclude:: code/day-1/00_hello-cxx/hello.cpp
-            :language: c++
+           .. literalinclude:: exercises/hello-executable/cxx/hello.cpp
+              :language: c++
 
-         You can download the :download:`complete, working example <code/tarballs/00_hello-cxx_solution.tar.bz2>`.
+        .. tab:: Fortran
 
-         Then unpack the archive::
+           .. literalinclude:: exercises/hello-executable/fortran/hello.f90
+              :language: fortran
 
-           tar xf hello-cxx_solution.tar.bz2
-
-      .. tab:: Fortran
-
-         Download the :download:`scaffold project <code/tarballs/00_hello-f.tar.bz2>`.
-
-         .. literalinclude:: code/day-1/00_hello-f/hello.f90
-            :language: fortran
-
-         You can download the :download:`complete, working example <code/tarballs/00_hello-f_solution.tar.bz2>`.
-
-         Then unpack the archive::
-
-           tar xf hello-f_solution.tar.bz2
-
-   1. The folder contains only the source code. We need to add a file called
+   2. The folder contains only the source code. We need to add a file called
       ``CMakeLists.txt`` to it.  CMake reads the contents of these special files
-      when generating the build system.
+      when generating the build system:
 
-   2. The first thing we will do is declare the requirement on minimum version of CMake:
+     .. tabs::
 
-      .. code-block:: cmake
+        .. tab:: C++
 
-         cmake_minimum_required(VERSION 3.13)
+           .. literalinclude:: exercises/hello-executable/cxx/CMakeLists.txt
+              :language: cmake
 
-   3. Next, we declare our project and its programming language:
+        .. tab:: Fortran
 
-      .. code-block:: cmake
+           .. literalinclude:: exercises/hello-executable/fortran/CMakeLists.txt
+              :language: cmake
 
-         project(Hello LANGUAGES CXX)
+   3. We are ready to call CMake and get our build system:
 
-   4. We create an *executable target*. CMake will generate rules in the build
-      system to compile and link our source file into an executable:
-
-      .. code-block:: cmake
-
-         add_executable(hello hello.cpp)
-
-   5. We are ready to call CMake and get our build system:
-
-      .. code-block:: bash
+      .. code-block:: console
 
          $ cmake -S. -Bbuild
 
-   6. And finally build our executable:
+   4. And finally build our executable:
 
-      .. code-block:: bash
+      .. code-block:: console
 
          $ cmake --build build
 
-
-There are few things to note here:
-
-1. Any CMake build system will invoke the following commands in its **root**
-   ``CMakeLists.txt``:
-
-   .. signature:: |cmake_minimum_required|
-
-      .. code-block:: cmake
-
-         cmake_minimum_required(VERSION <min>[...<max>] [FATAL_ERROR])
-
-   .. parameters::
-
-      ``VERSION``
-          Minimum and, optionally, maximum version of CMake to use.
-      ``FATAL_ERROR``
-          Raise a fatal error if the version constraint is not satisfied. This
-          option is ignored by CMake >=2.6
+   5. Try to also run the executable.
 
 
-   .. signature:: |project|
-
-      .. code-block:: cmake
-
-         project(<PROJECT-NAME>
-                 [VERSION <major>[.<minor>[.<patch>[.<tweak>]]]]
-                 [DESCRIPTION <project-description-string>]
-                 [HOMEPAGE_URL <url-string>]
-                 [LANGUAGES <language-name>...])
-
-   .. parameters::
-
-      ``<PROJECT-NAME>``
-          The name of the project.
-      ``LANGUAGES``
-          Languages in the project.
-
-2. The case of CMake commands and variables does not matter: the DSL is
-   case-insensitive. However, the plain-text files that CMake parses **must be
-   called** ``CMakeLists.txt`` and the case matters!
-3. The command to add executables to the build system is, unsurprisingly, |add_executable|:
-
-   .. signature:: |add_executable|
-
-      .. code-block:: cmake
-
-         add_executable(<name> [WIN32] [MACOSX_BUNDLE]
-                        [EXCLUDE_FROM_ALL]
-                        [source1] [source2 ...])
-
-4. Using CMake you can abstract the generation of the build system and also the
-   invocation of the build tools.
-
-
-.. typealong:: The command-line interface to CMake
+.. discussion:: Discussion: We prefer out-of-source builds
 
    The ``-S`` switch specifies which source directory CMake should scan: this is
    the folder containing the *root* ``CMakeLists.txt``, *i.e.* the one containing
@@ -266,47 +192,92 @@ There are few things to note here:
    switch helps with that, as it is used to give where to store build artifacts,
    including the generated build system. This is the minimal invocation of ``cmake``:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ cmake -S. -Bbuild
 
    To switch to another generator, we will use the ``-G`` switch:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ cmake -S. -Bbuild -GNinja
 
    Options to be used at build-system generation are passed with the ``-D``
    switch. For example, to change compilers:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ cmake -S. -Bbuild -GNinja -DCMAKE_CXX_COMPILER=clang++
 
+   Why prefer out-of-source builds?
 
-Producing libraries
--------------------
+   - You can build several builds with the same source without having to copy the entire project
+     and merging changes later (sequential and parallel, debug and release).
 
-CMake can of course be used to produce libraries as well as executables.
-The relevant command is |add_library|:
+We have learned met three CMake directives (you can click on these to jump to
+the official documentation help text):
 
-.. signature:: |add_library|
+- |cmake_minimum_required|
+- |project|
+- |add_executable|
 
-   .. code-block:: cmake
+The case of CMake commands and variables does not matter: the DSL is
+case-insensitive. However, the plain-text files that CMake parses **must be
+called** ``CMakeLists.txt`` and the case matters!
 
-      add_library(<name> [STATIC | SHARED | MODULE]
-                  [EXCLUDE_FROM_ALL]
-                  [<source>...])
 
-You can link libraries into executables with |target_link_libraries|:
+.. _hello-world-library:
 
-.. signature:: |target_link_libraries|
+Exercise: building and linking a library
+----------------------------------------
 
-   .. code-block:: cmake
+.. exercise:: A more modular "Hello, world"
 
-      target_link_libraries(<target>
-                            <PRIVATE|PUBLIC|INTERFACE> <item>...
-                           [<PRIVATE|PUBLIC|INTERFACE> <item>...]...)
+   Only rarely we have one-source-file projects and more realistically, as
+   projects grow, we split them up into separate files. This simplifies
+   (re)compilation but also helps humans maintaining and understanding the
+   project.
+
+   We stay with the toy project but also here things got more real and more
+   modular and we decided to split the project up into several files:
+
+   .. tabs::
+
+      .. tab:: C++
+
+         hello.cpp:
+
+         .. literalinclude:: exercises/hello-library/cxx/hello.cpp
+            :language: c++
+
+         greeting.cpp:
+
+         .. literalinclude:: exercises/hello-library/cxx/greeting.cpp
+            :language: c++
+
+         greeting.hpp:
+
+         .. literalinclude:: exercises/hello-library/cxx/greeting.hpp
+            :language: c++
+
+      .. tab:: Fortran
+
+         hello.f90:
+
+         .. literalinclude:: exercises/hello-library/fortran/hello.f90
+            :language: fortran
+
+         greeting.f90:
+
+         .. literalinclude:: exercises/hello-library/fortran/greeting.f90
+            :language: fortran
+
+   **Your first goal**: try to build this by adapting the `CMakeLists.txt` from
+   earlier by first adding all the source files into the same |add_executable|.
+
+CMake can of course be used to produce libraries as well as executables.  The
+relevant command is |add_library|.  You can link libraries can be linked into
+other targets (executables or other libraries) with |target_link_libraries|.
 
 .. callout:: Executables and libraries are targets
 
@@ -318,41 +289,39 @@ You can link libraries into executables with |target_link_libraries|:
    dependencies and is much more effective than keeping track of state with
    variables.  We will clarify these concepts in :ref:`targets`.
 
-.. challenge:: Producing libraries
+
+.. exercise:: Collecting files into libraries
+
+   **Your second goal**: now try to build a greeting library and link against this library
+   instead of collecting all sources into the executable target:
 
    .. tabs::
 
       .. tab:: C++
 
-         Download the :download:`scaffold project <code/tarballs/01_libraries-cxx.tar.bz2>`.
-
-         #. Write a ``CMakeLists.txt`` to compile the source files
-            ``Message.hpp`` and  ``Message.cpp`` into a library. Do not specify
-            the type of library, shared or static, explicitly.
-         #. Add an executable from the ``hello-world.cpp`` source file.
-         #. Link the library into the executable.
-
-         You can download the :download:`complete, working example <code/tarballs/01_libraries-cxx_solution.tar.bz2>`.
+         .. literalinclude:: exercises/hello-library/cxx/CMakeLists.txt
+            :language: cmake
 
       .. tab:: Fortran
 
-         Download the :download:`scaffold project <code/tarballs/01_libraries-f.tar.bz2>`.
+         .. literalinclude:: exercises/hello-library/fortran/CMakeLists.txt
+            :language: cmake
 
-         #. Write a ``CMakeLists.txt`` to compile the source files
-            ``message.f90`` into a library. Do not specify the type of library,
-            shared or static, explicitly.
-         #. Add an executable from the ``hello-world.f90`` source file.
-         #. Link the library into the executable.
-
-         You can download the :download:`complete, working example <code/tarballs/01_libraries-f_solution.tar.bz2>`.
+   Which solution did you like better? Discuss the pros and cons.
 
    What kind of library did you get? Static or shared? Try configuring the project as follows:
 
    .. code-block:: bash
 
-      $ cmake -S. -Bbuild -GNinja -DBUILD_SHARED_LIBS=ON
+      $ cmake -S. -Bbuild -DBUILD_SHARED_LIBS=ON
 
    The ``BUILD_SHARED_LIBS`` variable influences the default behavior of |add_library|.
+
+
+.. discussion:: Discussion: Granulatity of libraries
+
+   Write me ...
+
 
 .. keypoints::
 

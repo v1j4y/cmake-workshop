@@ -8,7 +8,7 @@ pure function say_hello() result(message)
 
 end function
 
-program hello_world
+program example
 
   implicit none
 
