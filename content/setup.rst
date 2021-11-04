@@ -11,6 +11,9 @@ package and enviroment manager <https://docs.conda.io/en/latest/>`_, as it
 provides a convenient way to install binary packages in an isolated software
 environment, without affecting the rest of your operating system.
 
+If you have a recent CMake (at least 3.14) and recent compilers and Python 3
+on your system already, you can also most probably use these directly.
+
 
 For Windows users
 ^^^^^^^^^^^^^^^^^
