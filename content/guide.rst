@@ -1,6 +1,8 @@
 Instructor's guide
 ==================
 
+.. _schedule-draft:
+
 Schedule
 --------
 

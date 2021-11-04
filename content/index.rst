@@ -53,6 +53,10 @@ You will learn how to:
    setup
 
 
+This schedule below is shifting. I am reworking it towards the draft
+:ref:`schedule-draft` in the instructor guide, from a 2-day schedule towards a
+3-hours schedule. This restructuring will take 2-3 more days.
+
 .. toctree::
    :hidden:
    :maxdepth: 1
