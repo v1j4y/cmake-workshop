@@ -327,5 +327,6 @@ other targets (executables or other libraries) with |target_link_libraries|.
 
    - CMake is a **build system generator**, not a build system.
    - You write ``CMakeLists.txt`` to describe how the build tools will create artifacts from sources.
+   - We can define a multi-language project like this: ``project(example LANGUAGES Fortran C CXX)``
    - You can use the CMake suite of tools to manage the whole lifetime: from source files to tests to deployment.
    - The structure of the project is mirrored in the build folder.
