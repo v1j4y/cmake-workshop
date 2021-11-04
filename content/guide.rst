@@ -42,7 +42,7 @@ This is not in place yet but I am reworking/condensing the schedule towards:
     10 min ; Break
 
     10 min ; Testing and nesting
-    15 min ; Exercise: testing with CMake
+    15 min ; Exercise: testing with CTest
     15 min ; Exercise: composing modules
     10 min ; Discussion
 
