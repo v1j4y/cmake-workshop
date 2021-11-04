@@ -1,8 +1,8 @@
 Instructor's guide
-------------------
+==================
 
 Learning outcomes
-^^^^^^^^^^^^^^^^^
+-----------------
 
 - Write a CMake build system for C, C++, and Fortran projects producing
   libraries and/or executables.
@@ -12,50 +12,38 @@ Learning outcomes
 - Safely and effectively build mixed-language projects (Python+C/C++,
   Python+Fortran, Fortran+C/C++)
 
-First iteration
-^^^^^^^^^^^^^^^
 
-**Day 1 - Tuesday 9 February 2021**
+Schedule
+--------
 
-.. csv-table::
-   :widths: auto
-   :align: center
-   :delim: ;
-
-    9:00 -  9:10 ; Welcome and introduction to the training course
-    9:10 -  9:40 ; :ref:`hello-cmake`
-    9:40 -  9:45 ; Break
-    9:45 - 10:15 ; :ref:`cmake-syntax`
-   10:15 - 10:25 ; Break
-   10:25 - 10:55 ; :ref:`hello-ctest`
-   10:55 - 11:00 ; Break
-   11:00 - 11:30 ; :ref:`environment`
-   11:30 - 11:40 ; Break
-   11:40 - 12:10 ; :ref:`probing`
-   12:10 - 12:15 ; Break
-   12:15 - 12:30 ; Wrap-up
-
-**Day 2 - Wednesday 10 February 2021**
-
-We allocated **40 minutes** to each of the :ref:`targets`, :ref:`dependencies`,
-:ref:`cxx-fortran` episodes, with short breaks during the exercises in the breakout
-rooms.
-The :ref:`fetch-content` episode can be skipped in case contents from Day 1
-spill over to Day 2.
+This is not in place yet but I am reworking/condensing the schedule towards:
 
 .. csv-table::
    :widths: auto
    :align: center
    :delim: ;
 
+    30 min ; Motivation, overview, and basics (morning)
 
-    9:00 -  9:10 ; What did we cover yesterday?
-    9:10 -  9:50 ; :ref:`targets`
-    9:50 - 10:00 ; Break
-   10:00 - 10:40 ; :ref:`dependencies`
-   10:40 - 10:50 ; Break
-   10:50 - 11:30 ; :ref:`cxx-fortran`
-   11:30 - 11:40 ; Break
-   11:40 - 12:10 ; :ref:`fetch-content`
-   12:10 - 12:15 ; Break
-   12:15 - 12:30 ; Wrap-up
+           ; Lunch break
+
+    10 min ; From sources to executables
+    15 min ; Exercise: hello world
+    15 min ; Exercise: building a larger project
+    10 min ; Discussion: typical pitfalls
+
+    10 min ; Break
+
+    10 min ; Configuring and dependencies
+    15 min ; Exercise: autogenerating a configuration
+    15 min ; Exercise: discovering and linking dependencies
+    10 min ; Discussion
+
+    10 min ; Break
+
+    10 min ; Testing and nesting
+    15 min ; Exercise: testing with CMake
+    15 min ; Exercise: composing modules
+    10 min ; Discussion
+
+    10 min ; Wrap-up
