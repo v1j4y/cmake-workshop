@@ -1,18 +1,6 @@
 Instructor's guide
 ==================
 
-Learning outcomes
------------------
-
-- Write a CMake build system for C, C++, and Fortran projects producing
-  libraries and/or executables.
-- Run tests for your code with CTest.
-- Ensure your build system will work on different platforms.
-- Detect and use external dependencies in your project.
-- Recognize modular patterns and also recognize and know how to avoid
-  problematic "spaghetti" patterns.
-
-
 Schedule
 --------
 
