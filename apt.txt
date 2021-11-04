@@ -1,3 +1,0 @@
-emacs-nox
-nano
-vim-nox
