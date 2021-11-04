@@ -70,7 +70,6 @@ The schedule/material left is shifting. I am reworking it towards the draft
    probing
    targets
    dependencies
-   cxx-fortran
    fetch-content
 
 
