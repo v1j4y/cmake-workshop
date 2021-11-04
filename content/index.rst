@@ -17,8 +17,8 @@ You will learn how to:
 - Run tests for your code with CTest.
 - Ensure your build system will work on different platforms.
 - Detect and use external dependencies in your project.
-- Recognize modular patterns and also recognize and know how to avoid
-  problematic "spaghetti" patterns.
+- Recognize modular patterns but also recognize and know how to avoid
+  problematic and later unmaintainable "spaghetti" patterns.
 
 
 .. prereq::
