@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('.'))
 # -- Project information -----------------------------------------------------
 
 project = "CMake Workshop"
-copyright = "2020, EuroCC National Competence Centre Sweden (this is derived work)"
+copyright = "2020, EuroCC National Competence Centre Sweden (this is derived work from the ENCCS workshop, see 'Credits' about changes)"
 author = "Roberto Di Remigio, Kjartan Thor Wikfeldt"
 github_user = "coderefinery"
 github_repo_name = "cmake-workshop"  # auto-detected from dirname if blank
