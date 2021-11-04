@@ -18,7 +18,7 @@ This is not in place yet but I am reworking/condensing the schedule towards:
            ; Lunch break
 
     10 min ; From sources to executables
-    15 min ; Exercise: hello world
+    15 min ; Type-along: hello world
     15 min ; Exercise: building a larger project
     10 min ; Discussion: typical pitfalls
 
