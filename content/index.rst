@@ -21,6 +21,15 @@ You will learn how to:
   problematic and later unmaintainable "spaghetti" patterns.
 
 
+Topics not covered
+------------------
+
+- Probing compilation, linking, and execution
+- Superbuilds
+- GPUs
+- Cross-compilation
+
+
 .. prereq::
 
    **Software requirements**
@@ -103,7 +112,6 @@ Schedule
 
    hello-cmake
    targets
-   probing
    environment
    dependencies
    hello-ctest
