@@ -197,45 +197,59 @@ This is the ``CMakeLists.txt`` - take some time to study it since there is a qui
 Building a larger project with multiple folders
 -----------------------------------------------
 
-Each folder in a multi-folder project will contain a ``CMakeLists.txt``: a
-source tree with one **root** and many **leaves**.
+In the example above we have split a project into folders and libraries but we
+kept one ``CMakeLists.txt``. As the project grows, this becomes impractical for
+humans (the CMake computer overlords will not mind) and maintenance becomes
+easier if we split the CMake configuration into multiple ``CMakeLists.txt``
+with the help of |add_subdirectory|. Our goal is to have a ``CMakeLists.txt`` as
+close as possible to the source files.
+
+We will soon practice with an example project where instead of this:
+
+.. code-block:: text
+
+   project/
+   ├── CMakeLists.txt           <--- Only at root
+   ├── external
+   └── src
+       ├── evolution
+       ├── initial
+       ├── io
+       └── parser
+
+we rather wish this:
 
 .. code-block:: text
 
    project/
    ├── CMakeLists.txt           <--- Root
    ├── external
-   │   ├── CMakeLists.txt       <--- Leaf at level 1
+   │   ├── CMakeLists.txt       <--- Leaf
    └── src
-       ├── CMakeLists.txt       <--- Leaf at level 1
+       ├── CMakeLists.txt       <--- Another leaf
        ├── evolution
-       │   ├── CMakeLists.txt   <--- Leaf at level 2
+       │   ├── CMakeLists.txt   <--- Leaf of leaf
        ├── initial
-       │   ├── CMakeLists.txt   <--- Leaf at level 2
+       │   ├── CMakeLists.txt   <--- Leaf of leaf
        ├── io
-       │   ├── CMakeLists.txt   <--- Leaf at level 2
+       │   ├── CMakeLists.txt   <--- Leaf of leaf
        └── parser
-           └── CMakeLists.txt   <--- Leaf at level 2
+           └── CMakeLists.txt   <--- Leaf of leaf
+
+Each folder in a multi-folder project will contain a ``CMakeLists.txt``: a
+source tree with one **root** and many **leaves**.
 
 The root ``CMakeLists.txt`` will contain the invocation of the |project|
 command: variables and targets declared in the root have effectively global
 scope. Remember also that |PROJECT_SOURCE_DIR| will point to the folder
 containing the root ``CMakeLists.txt``.
 In order to move between the root and a leaf or between leaves, you will use the
-|add_subdirectory| command:
+|add_subdirectory| command.
 
-.. signature:: |add_subdirectory|
-
-   .. code-block:: cmake
-
-      add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])
-
-Typically, you only need to pass the first argument: the folder within the build
-tree will be automatically computed by CMake.
 We can declare targets at any level, not necessarily the root: a target is
 visible at the level at which it is declared and all higher levels.
 
-.. challenge:: Cellular automata
+.. challenge:: Exercise: practicing structuring projects with cellular automata
 
    Let's move beyond "Hello, world" and work with a project spanning multiple
    folders. We will implement a relatively simple code to compute and print to
@@ -245,16 +259,15 @@ visible at the level at which it is declared and all higher levels.
    which reuses an external project.
    Your goal is to:
 
-   - Build a library out of the contents of ``external`` and each subfolder of
-     ``src``. Use |add_library| together with |target_sources| and, for C++,
-     |target_include_directories|. Think carefully about the *visibility
-     levels*.
-   - Build the main executable. Where is it located in the build tree? Remember
-     that CMake generates a build tree mirroring the source tree.
-   - The executable will accept 3 arguments: the length, number of steps, and
-     automaton rule.  You can run it with:
+   1. Build the main executable at ``exercises/multiple-folders/problem/``.
 
-     .. code-block:: bash
+   2. Where is it located in the build tree? Remember
+      that CMake generates a build tree mirroring the source tree.
+
+   3. The executable will accept 3 arguments: the length, number of steps, and
+      automaton rule.  You can run it with:
+
+     .. code-block:: console
 
         $ automata 40 5 30
 
@@ -272,75 +285,79 @@ visible at the level at which it is declared and all higher levels.
                         **  *   *
                        ** **** ***
 
+   4. Push the definition of targets "down" into folders and subfolders, as close
+      as possible to the source files with the help of |add_subdirectory|.
+
    .. tabs::
 
       .. tab:: C++
 
-         You can download the :download:`scaffold code <code/tarballs/21_automata-cxx.tar.bz2>`.
-
-         The sources are organized in a tree:
+         You want to arrive at this (``exercises/multiple-folders/solution/cxx/``) structure:
 
          .. code-block:: text
 
-            automata-cxx/
-            ├── external
-            │   ├── conversion.cpp
-            │   └── conversion.hpp
-            └── src
-                ├── evolution
-                │   ├── evolution.cpp
-                │   └── evolution.hpp
-                ├── initial
-                │   ├── initial.cpp
-                │   └── initial.hpp
-                ├── io
-                │   ├── io.cpp
-                │   └── io.hpp
-                ├── main.cpp
-                └── parser
-                    ├── parser.cpp
-                    └── parser.hpp
+           .
+           ├── CMakeLists.txt
+           ├── external
+           │   ├── CMakeLists.txt
+           │   ├── conversion.cpp
+           │   └── conversion.hpp
+           └── src
+               ├── CMakeLists.txt
+               ├── evolution
+               │   ├── CMakeLists.txt
+               │   ├── evolution.cpp
+               │   └── evolution.hpp
+               ├── initial
+               │   ├── CMakeLists.txt
+               │   ├── initial.cpp
+               │   └── initial.hpp
+               ├── io
+               │   ├── CMakeLists.txt
+               │   ├── io.cpp
+               │   └── io.hpp
+               ├── main.cpp
+               └── parser
+                   ├── CMakeLists.txt
+                   ├── parser.cpp
+                   └── parser.hpp
 
-         1. Should the header files be included in the invocation of
-            |target_sources|? If yes, which visibility level should you use?
-         2. In |target_sources|, does using absolute
-            (``${CMAKE_CURRENT_LIST_DIR}/parser.cpp``) or relative
-            (``parser.cpp``) paths make any difference?
-
-         Download the :download:`complete working example <code/tarballs/21_automata-cxx_solution.tar.bz2>`.
+         In |target_sources|, does using absolute
+         (``${CMAKE_CURRENT_LIST_DIR}/parser.cpp``) or relative
+         (``parser.cpp``) paths make any difference?
 
       .. tab:: Fortran
 
-         You can download the :download:`scaffold code <code/tarballs/21_automata-f.tar.bz2>`.
-
-         The sources are organized in a tree:
+         You want to arrive at this (``exercises/multiple-folders/solution/fortran/``) structure:
 
          .. code-block:: text
 
-            automata-f/
-            ├── external
-            │   └── conversion.f90
-            └── src
-                ├── evolution
-                │   ├── ancestors.f90
-                │   ├── empty.f90
-                │   └── evolution.f90
-                ├── initial
-                │   └── initial.f90
-                ├── io
-                │   └── io.f90
-                ├── main.f90
-                └── parser
-                    └── parser.f90
+           .
+           ├── CMakeLists.txt
+           ├── external
+           │   ├── CMakeLists.txt
+           │   └── conversion.f90
+           └── src
+               ├── CMakeLists.txt
+               ├── evolution
+               │   ├── ancestors.f90
+               │   ├── CMakeLists.txt
+               │   ├── empty.f90
+               │   └── evolution.f90
+               ├── initial
+               │   ├── CMakeLists.txt
+               │   └── initial.f90
+               ├── io
+               │   ├── CMakeLists.txt
+               │   └── io.f90
+               ├── main.f90
+               └── parser
+                   ├── CMakeLists.txt
+                   └── parser.f90
 
-         1. The ``empty.f90`` source declares, as the name suggests, an empty
-            Fortran module. This module is only used within the ``evolution``
-            subfolder: what visibility level should it have in |target_sources|?
-         2. Note that CMake can understand the compilation order imposed by the
-            Fortran modules without further intervention. Where are the ``.mod``
-            files?
-
-         Download the :download:`complete working example <code/tarballs/21_automata-f_solution.tar.bz2>`.
+         Note that CMake can understand the compilation order imposed by the
+         Fortran modules without further intervention. Where are the ``.mod``
+         files?
 
       .. tab:: Bonus
 
@@ -355,6 +372,8 @@ visible at the level at which it is declared and all higher levels.
 
          Modify your ``CMakeLists.txt`` to output the ``automata`` executable in
          ``build/bin`` and the libraries in ``build/lib``.
+
+   5. Discuss pros and cons of one ``CMakeLists.txt`` compared to many.
 
 
 .. discussion:: Target properties vs. variables
