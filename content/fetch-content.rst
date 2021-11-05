@@ -1,8 +1,8 @@
 .. _fetch-content:
 
 
-Automated dependency handling with ``FetchContent``
-===================================================
+Automated dependency handling with FetchContent
+===============================================
 
 .. questions::
 
