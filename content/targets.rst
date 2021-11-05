@@ -153,7 +153,7 @@ Here the main function links to greeting which links to hello_world which links 
   If you have Graphviz installed, you can visualize the dependencies between
   the targets:
 
-  .. code-block:: bash
+  .. code-block:: console
 
      $ cd build
      $ cmake --graphviz=project.dot ..
