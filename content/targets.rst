@@ -23,11 +23,7 @@ with projects comprising dozens to hundreds of source files sprawling in a compl
 tree.  Using modern CMake helps you keep the complexity of the build system in
 check.
 
-
-It's all about targets and properties
--------------------------------------
-
-With the advent of CMake 3.0, also known as **Modern CMake**, there has been a
+With the advent of CMake 3.0, there has been a
 significant shift in the way the CMake domain-specific language (DSL) is
 structured.  Rather than relying on global scope **variables** to convey
 information in a project, we should shift to using **targets** and
@@ -385,4 +381,4 @@ visible at the level at which it is declared and all higher levels.
    - Use |get_property| to inquire and |set_property| to modify values of
      properties.
    - To keep the complexity of the build system at a minimum, each folder in a
-     multi-folder project should have its own CMake script.
+     multi-folder project should have its own ``CMakeLists.txt``.
