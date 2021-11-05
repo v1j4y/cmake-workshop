@@ -17,16 +17,16 @@ This is not in place yet but I am reworking/condensing the schedule towards:
 
            ; Lunch break
 
-    10 min ; :ref:`sources-to-executables`
-    15 min ; :ref:`hello-world-executable`
+    15 min ; :ref:`hello-world-executable` and setup help
     15 min ; :ref:`hello-world-library`
+    10 min ; Compile flags and compile definitions
     10 min ; Discussion
 
     10 min ; Break
 
     10 min ; Target-based project organization
     15 min ; Exercise: building a larger project
-    10 min ; Detecting environment and dependencies
+    10 min ; Environment, and dependencies
     15 min ; Exercise: discovering and linking dependencies
     10 min ; Discussion: typical pitfalls
 

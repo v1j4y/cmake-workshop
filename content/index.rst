@@ -61,15 +61,24 @@ The schedule/material left is shifting. I am reworking it towards the draft
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: The lesson
+   :caption: Introduction
+
+   motivation
+   cmake-syntax
+   quick-tour
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+   :caption: Hands-on workshop
 
    hello-cmake
-   cmake-syntax
-   hello-ctest
-   environment
-   probing
    targets
+   probing
+   environment
    dependencies
+   hello-ctest
    fetch-content
 
 
