@@ -54,6 +54,7 @@ jupyter_execute_notebooks = "cache"
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
     "code*",
+    "exercises*",
     "README*",
     "_build",
     "Thumbs.db",
