@@ -173,13 +173,31 @@ This is the ``CMakeLists.txt`` - take some time to study it since there is a qui
 
    1. Browse, configure, build, and run the code.
 
-   2. Now uncomment the highlighted line (line 17) with |target_compile_definitions|, configure into a fresh folder, and build.
+   2. Now uncomment the highlighted line (line 17) with |target_compile_definitions|, configure into a fresh folder, and build:
+
+      .. code-block:: console
+
+         $ cmake -S. -Bbuild_private
+         $ cmake --build build_private
+
       You will see that the definition is used in ``world.cpp`` but nowhere else.
 
    3. Now change the definition to ``PUBLIC``, configure into a fresh folder, and build.
+
+      .. code-block:: console
+
+         $ cmake -S. -Bbuild_public
+         $ cmake --build build_public
+
       You will see that the definition is used both in ``world.cpp`` and ``hello_world.cpp``.
 
    4. Now change the definition to ``INTERFACE``, configure into a fresh folder, and build.
+
+      .. code-block:: console
+
+         $ cmake -S. -Bbuild_interface
+         $ cmake --build build_interface
+
       You will see that the definition is used only in ``hello_world.cpp`` but not in ``world.cpp``.
 
 
