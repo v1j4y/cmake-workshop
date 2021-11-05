@@ -25,9 +25,10 @@ Topics not covered
 ------------------
 
 - Probing compilation, linking, and execution
+- Composing CMake projects from non-CMake projects
 - Superbuilds
-- GPUs
 - Cross-compilation
+- GPUs
 
 
 .. prereq::
