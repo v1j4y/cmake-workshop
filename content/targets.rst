@@ -19,17 +19,26 @@ Target-based build systems with CMake
 
 Real-world projects require more than compiling a few source files into
 executables and/or libraries.  In the vast majority of cases, you will be faced
-with projects comprising hundreds of source files sprawling in a complex source
+with projects comprising dozens to hundreds of source files sprawling in a complex source
 tree.  Using modern CMake helps you keep the complexity of the build system in
 check.
+
 
 It's all about targets and properties
 -------------------------------------
 
 With the advent of CMake 3.0, also known as **Modern CMake**, there has been a
 significant shift in the way the CMake domain-specific language (DSL) is
-structured.  Rather than relying on **variables** to convey information in a
-project, we should shift to using **targets** and **properties**.
+structured.  Rather than relying on global scope **variables** to convey
+information in a project, we should shift to using **targets** and
+**properties**.
+
+We will first demonstrate the better, nicer way using targets and properties,
+but we will also contrast this approach with less nice solutions that many
+codes use (global variables and less abstraction), so that we learn recognizing
+good patterns and stay away from less maintainable patterns for our own
+projects.
+
 
 Targets
 +++++++

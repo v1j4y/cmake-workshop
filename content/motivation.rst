@@ -4,6 +4,14 @@
 Motivation and overview
 =======================
 
+.. objectives::
+
+   - Motivate why CMake.
+   - Learn what tools available in the CMake suite.
+   - Learn the difference between *build systems*, *build tools*, and *build system generator*.
+   - Learn to distinguish between *configuration*, *generation*, and *build* time.
+
+
 Software is everywhere and so are build systems. Whenever you run a piece of
 software,  anything from calendar apps to computationally-intensive programs,
 there was a build system involved in transforming the plain-text source code

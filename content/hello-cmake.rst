@@ -4,16 +4,10 @@
 From sources to executables
 ===========================
 
-.. questions::
-
-   - How do we use CMake to compile source files to executables?
-
 .. objectives::
 
-   - Learn what tools available in the CMake suite.
    - Learn how to write a simple ``CMakeLists.txt``.
-   - Learn the difference between *build systems*, *build tools*, and *build system generator*.
-   - Learn to distinguish between *configuration*, *generation*, and *build* time.
+   - Learn how to build executables and libraries.
 
 
 .. _hello-world-executable:
