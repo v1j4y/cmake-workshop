@@ -144,9 +144,20 @@ The five most used commands used to handle targets are:
 
 There are additional commands in the ``target_*`` family:
 
-.. code-block:: bash
+.. code-block:: console
 
-   $ cmake --help-command-link | grep "^target_"
+  $ cmake --help-command-list | grep "^target_"
+
+  target_compile_definitions
+  target_compile_features
+  target_compile_options
+  target_include_directories
+  target_link_directories
+  target_link_libraries
+  target_link_options
+  target_precompile_headers
+  target_sources
+
 
 Properties
 ++++++++++
