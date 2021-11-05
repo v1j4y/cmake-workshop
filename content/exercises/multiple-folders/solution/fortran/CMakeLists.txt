@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(automata-f LANGUAGES Fortran)
+project(example LANGUAGES Fortran)
 
 # defines targets and sources
 add_subdirectory(src)
