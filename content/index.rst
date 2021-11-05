@@ -73,7 +73,7 @@ Schedule
 
     10 min ; Break
 
-    10 min ; Target-based project organization
+    10 min ; :ref:`targets`
     15 min ; Exercise: building a larger project
     10 min ; Environment, and dependencies
     15 min ; Exercise: discovering and linking dependencies

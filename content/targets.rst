@@ -41,10 +41,14 @@ projects.
 
 
 Targets
-+++++++
+-------
 
 A target is declared by either |add_executable| or |add_library|: thus, in broad
-terms, a target maps to a build artifact in the project. [#custom_targets]_
+terms, a target maps to a build artifact in the project.
+
+You can add custom targets to the build system with |add_custom_target|.
+Custom targets are not necessarily build artifacts.
+
 Any target has a collection of **properties**, which define *how* the build
 artifact should be produced **and** *how* it should be used by other dependent
 targets in the project.
@@ -57,90 +61,13 @@ targets in the project.
    |set_target_properties|.  Compile options, definitions, include directories,
    source files, link libraries, and link options are properties of targets.
 
-It is much more robust to use targets and properties than using variables.
-Given a target ``tgtA``, we can invoke one command in the ``target_*`` family as:
-
-.. code-block:: cmake
-
-   target_link_libraries(tgtA
-     PRIVATE tgtB
-     INTERFACE tgtC
-     PUBLIC tgtD
-     )
-
-the use of the visibility levels will achieve the following:
-
-- ``PRIVATE``. The property will only be used to build the target given as first
-  argument.  In our pseudo-code, ``tgtB`` will only be used to build ``tgtA``
-  but not be propagated as a dependency to other targets consuming ``tgtA``.
-- ``INTERFACE``. The property will only be used to build targets that consume
-  the target given as first argument.  In our pseudo-code, ``tgtC`` will only be
-  propagated as a dependency to other targets consuming ``tgtA``.
-- ``PUBLIC``. The property will be used **both** to build the target given as
-  first argument **and** targets that consume it.  In our pseudo-code, ``tgtD``
-  will be used to build ``tgtA`` and will be propagated as a dependency to
-  any other targets consuming ``tgtA``.
-
-
-.. figure:: img/target_inheritance.svg
-   :align: center
-
-   Properties on targets have **visibility levels**, which determine how CMake
-   should propagate them between interdependent targets.
-
 The five most used commands used to handle targets are:
 
-.. signature:: |target_sources|
-
-   .. code-block:: cmake
-
-      target_sources(<target>
-        <INTERFACE|PUBLIC|PRIVATE> [items1...]
-        [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
-
-   Use it to specify which source files to use when compiling a target.
-
-
-.. signature:: |target_compile_options|
-
-   .. code-block:: cmake
-
-      target_compile_options(<target> [BEFORE]
-        <INTERFACE|PUBLIC|PRIVATE> [items1...]
-        [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
-
-   Use it to specify which compiler flags to use.
-
-.. signature:: |target_compile_definitions|
-
-   .. code-block:: cmake
-
-      target_compile_definitions(<target>
-        <INTERFACE|PUBLIC|PRIVATE> [items1...]
-        [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
-
-   Use it to specify which compiler definitions to use.
-
-.. signature:: |target_include_directories|
-
-   .. code-block:: cmake
-
-      target_include_directories(<target> [SYSTEM] [BEFORE]
-        <INTERFACE|PUBLIC|PRIVATE> [items1...]
-        [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
-
-   Use it to specify which directories will contain header (for C/C++) and
-   module (for Fortran) files.
-
-.. signature:: |target_link_libraries|
-
-   .. code-block:: cmake
-
-      target_link_libraries(<target>
-        <PRIVATE|PUBLIC|INTERFACE> <item>...
-        [<PRIVATE|PUBLIC|INTERFACE> <item>...]...)
-
-   Use it to specify which libraries to link into the current target.
+- |target_sources|
+- |target_compile_options|
+- |target_compile_definitions|
+- |target_include_directories|
+- |target_link_libraries|
 
 There are additional commands in the ``target_*`` family:
 
@@ -160,10 +87,8 @@ There are additional commands in the ``target_*`` family:
 
 
 Properties
-++++++++++
+----------
 
-So far we have seen that you can set properties on targets, but also on tests
-(see :ref:`hello-ctest`).
 CMake lets you set properties at many different levels of visibility across the
 project:
 
@@ -179,46 +104,103 @@ project:
 
 For a complete list of properties known to CMake:
 
-.. code-block:: bash
+.. code-block:: console
 
    $ cmake --help-properties | less
 
-You can get the current value of any property with:
+You can get the current value of any property with |get_property|
+and set the value of any property with |set_property|.
 
-.. signature:: |get_property|
 
-   .. code-block:: cmake
+Visibility levels
+-----------------
 
-      get_property(<variable>
-             <GLOBAL
-              DIRECTORY [<dir>]
-              TARGET    <target>
-              SOURCE    <source>
-                        [DIRECTORY <dir> | TARGET_DIRECTORY <target>]
-              INSTALL   <file>
-              TEST      <test>
-              CACHE     <entry>
-              VARIABLE
-             PROPERTY <name>
-             [SET | DEFINED | BRIEF_DOCS | FULL_DOCS])
+It is much more robust to use targets and properties than using variables and
+here we will discuss why.
 
-and set the value of any property with:
+.. figure:: img/target_inheritance.svg
+   :align: center
 
-.. signature:: |set_property|
+   Properties on targets have **visibility levels**, which determine how CMake
+   should propagate them between interdependent targets.
 
-   .. code-block:: cmake
+Visibility levels ``PRIVATE``, ``PUBLIC``, or ``INTERFACE`` are very powerful
+but not easy to describe and imagine in words. Maybe a better approach to
+demonstrate what visibility levels is to see it in action.
 
-      set_property(<GLOBAL
-              DIRECTORY [<dir>]
-              TARGET    [<target1> ...]
-              SOURCE    [<src1> ...]
-                        [DIRECTORY <dirs> ...]
-                        [TARGET_DIRECTORY <targets> ...]
-              INSTALL   [<file1> ...]
-              TEST      [<test1> ...]
-              CACHE     [<entry1> ...]
-             [APPEND] [APPEND_STRING]
-             PROPERTY <name> [<value1> ...])
+We will demonstrate this with a hello world example where somebody went a bit
+too far with modularity and where we have split the code into 3 libraries and
+the main function (``exercises/property-visibility/cxx/``)::
+
+  .
+  ├── CMakeLists.txt
+  ├── greeting
+  │   ├── greeting.cpp
+  │   └── greeting.hpp
+  ├── hello_world
+  │   ├── hello_world.cpp
+  │   └── hello_world.hpp
+  ├── main.cpp
+  └── world
+      ├── world.cpp
+      └── world.hpp
+
+Here the main function links to greeting which links to hello_world which links to world.
+
+
+.. callout:: The internal dependency tree
+
+  If you have Graphviz installed, you can visualize the dependencies between
+  the targets:
+
+  .. code-block:: bash
+
+     $ cd build
+     $ cmake --graphviz=project.dot ..
+     $ dot -T svg project.dot -o project.svg
+
+
+  .. figure:: img/project.svg
+     :align: center
+
+     The dependencies between the four targets in the example project.
+
+
+This is the ``CMakeLists.txt`` - take some time to study it since there is a quite a lot going on:
+
+.. literalinclude:: exercises/property-visibility/cxx/CMakeLists.txt
+   :language: cmake
+   :linenos:
+   :emphasize-lines: 17
+
+.. exercise:: Testing the 3 different visibility levels
+
+   1. Browse, configure, build, and run the code.
+
+   2. Now uncomment the highlighted line (line 17) with |target_compile_definitions|, configure into a fresh folder, and build.
+      You will see that the definition is used in ``world.cpp`` but nowhere else.
+
+   3. Now change the definition to ``PUBLIC``, configure into a fresh folder, and build.
+      You will see that the definition is used both in ``world.cpp`` and ``hello_world.cpp``.
+
+   4. Now change the definition to ``INTERFACE``, configure into a fresh folder, and build.
+      You will see that the definition is used only in ``hello_world.cpp`` but not in ``world.cpp``.
+
+
+.. discussion:: Visibility levels
+
+   Discuss what this means and how we can use it to fine-tune visibility of
+   definitions, include directories, and libraries.
+
+   What do you think will happen if we change the visibility in line 14 of the
+   above code to ``PRIVATE``?
+
+
+
+
+
+
+
 
 
 .. _multiple-folders:
@@ -386,21 +368,9 @@ visible at the level at which it is declared and all higher levels.
          ``build/bin`` and the libraries in ``build/lib``.
 
 
-.. callout:: The internal dependency tree
+.. discussion:: Target properties vs. variables
 
-   You can visualize the dependencies between the targets in your project with Graphviz:
-
-  .. code-block:: bash
-
-     $ cd build
-     $ cmake --graphviz=project.dot ..
-     $ dot -T svg project.dot -o project.svg
-
-
-  .. figure:: img/project.svg
-     :align: center
-
-     The dependencies between targets in the cellular automata project.
+   Write me ...
 
 
 .. keypoints::
@@ -416,11 +386,3 @@ visible at the level at which it is declared and all higher levels.
      properties.
    - To keep the complexity of the build system at a minimum, each folder in a
      multi-folder project should have its own CMake script.
-
-
-.. rubric:: Footnotes
-
-.. [#custom_targets]
-
-   You can add custom targets to the build system with |add_custom_target|.
-   Custom targets are not necessarily build artifacts.
