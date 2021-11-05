@@ -69,11 +69,10 @@ Schedule
     15 min ; :ref:`hello-world-executable` and setup help
     15 min ; :ref:`hello-world-library`
     10 min ; Compile flags and compile definitions
-    10 min ; Discussion
+    20 min ; :ref:`targets`
 
     10 min ; Break
 
-    10 min ; :ref:`targets`
     15 min ; Exercise: building a larger project
     10 min ; Environment, and dependencies
     15 min ; Exercise: discovering and linking dependencies
