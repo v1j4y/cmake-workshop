@@ -1,3 +1,6 @@
+.. _quick-tour:
+
+
 Quick tour
 ==========
 

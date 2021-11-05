@@ -13,7 +13,8 @@ This is not in place yet but I am reworking/condensing the schedule towards:
    :align: center
    :delim: ;
 
-    30 min ; Motivation, overview, and basics (morning)
+    15 min ; :ref:`motivation`
+    15 min ; :ref:`quick-tour`
 
            ; Lunch break
 
