@@ -115,6 +115,5 @@ Schedule
    :maxdepth: 1
    :caption: Reference
 
-   conventions
    resources
    credits
