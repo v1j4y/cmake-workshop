@@ -73,10 +73,10 @@ Schedule
 
     10 min ; Break
 
-    15 min ; Exercise: building a larger project
+    15 min ; :ref:`multiple-folders`
     10 min ; Environment, and dependencies
-    15 min ; Exercise: discovering and linking dependencies
     10 min ; Discussion: typical pitfalls
+    15 min ; Exercise: discovering and linking dependencies
 
     10 min ; Break
 

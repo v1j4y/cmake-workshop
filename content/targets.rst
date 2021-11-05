@@ -192,17 +192,10 @@ This is the ``CMakeLists.txt`` - take some time to study it since there is a qui
    above code to ``PRIVATE``?
 
 
-
-
-
-
-
-
-
 .. _multiple-folders:
 
-Multiple folders
-----------------
+Building a larger project with multiple folders
+-----------------------------------------------
 
 Each folder in a multi-folder project will contain a ``CMakeLists.txt``: a
 source tree with one **root** and many **leaves**.
