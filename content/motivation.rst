@@ -1,15 +1,29 @@
 Motivation and overview
 =======================
 
-
-What is CMake?
---------------
-
 Software is everywhere and so are build systems. Whenever you run a piece of
 software,  anything from calendar apps to computationally-intensive programs,
 there was a build system involved in transforming the plain-text source code
 into binary files that could run on the device you are using. In research code
 projects, CMake is often involved in this.
+
+
+Why is Make not enough?
+-----------------------
+
+- Make knows about targets and dependencies
+- Make does not know which compiler (options) we want and which environment we are on
+- We need to tell Make what depends on what (Fortran 90 projects)
+
+
+What is CMake?
+--------------
+
+- Cross-platform (this is the C in CMake, not the C language)
+- Open-source
+- Actively developed: https://github.com/Kitware/CMake
+- Manages the build process in a compiler-independent manner
+- Written in C++ (does not matter but if you want to build CMake yourself, C++ is all you need)
 
 CMake is a **build-system generator**: it provides a family of tools and a
 *domain-specific language* (DSL) to **describe** what the build system should
@@ -110,3 +124,43 @@ We refer to these stages as *CMake times* and each tool is appropriate at a spec
    <https://github.com/dev-cafe/cmake-cookbook>`_ and is licensed under the
    terms of the `CC-BY-SA
    <https://creativecommons.org/licenses/by-sa/4.0/legalcode>`_.
+
+
+Why CMake?
+----------
+
+Separation of source and build path:
+
+- **Out-of-source compilation** (possibility to compile several builds with the same source)
+
+Portability:
+
+- Really **cross-platform** (Linux, Mac, Windows, AIX, iOS, Android)
+- CMake defines portable variables about the system
+- Cross-platform system- and library-discovery
+
+Language support:
+
+- Excellent support for **Fortran, C, C++**, and Java, as well as mixed-language projects
+- CMake understands Fortran 90 dependencies very well; no need to program a dependency scanner
+- Excellent support for multi-component and multi-library projects
+
+Supports modular code development:
+
+- Makes it possible and relatively easy to download, configure, build, install, and link **external modules**
+
+Provides tools:
+
+- Generates user interface (command-line or text-UI or GUI)
+- Full-fledged **testing and packaging framework** with CTest and CPack
+- CTest can run sequential tests in parallel
+
+Popular:
+
+- CMake is used by **many prominent projects**:
+  MySQL, Boost, VTK, Blender, KDE, LyX, Mendeley, MikTeX, Compiz,
+  Google Test, ParaView, Second Life, Avogadro, and many more ...
+
+General:
+
+- Not bound to the generation of Makefiles
