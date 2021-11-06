@@ -132,29 +132,6 @@ string equality, and for version comparisons, such as ``VERSION_EQUAL``.
    for further details.
 
 
-.. challenge:: Conditionals in CMake
-
-   Modify the ``CMakeLists.txt`` from the previous exercise to build either a
-   *static* or a *shared* library depending on the value of the boolean
-   ``MAKE_SHARED_LIBRARY``:
-
-   1. Define the ``MAKE_SHARED_LIBRARY`` variable.
-   2. Write a conditional checking the variable. In each branch call
-      |add_library| appropriately.
-
-   .. tabs::
-
-      .. tab:: C++
-
-         You can download the :download:`scaffold project <code/tarballs/02_conditionals-cxx.tar.bz2>` and the
-         :download:`complete, working example <code/tarballs/02_conditionals-cxx_solution.tar.bz2>`.
-
-      .. tab:: Fortran
-
-         You can download the :download:`scaffold project <code/tarballs/02_conditionals-f.tar.bz2>` and the
-         :download:`complete, working example <code/tarballs/02_conditionals-f_solution.tar.bz2>`.
-
-
 You can perform the same operation on a collection of items with |foreach|:
 
 .. signature:: |foreach|
@@ -167,21 +144,6 @@ You can perform the same operation on a collection of items with |foreach|:
 
 The list of items is either space- or ;-separated. ``break()`` and
 ``continue()`` are also available.
-
-.. typealong:: Loops in CMake
-
-   In this typealong, we will show how to use |foreach| and lists in CMake.  We
-   will work from a :download:`scaffold project
-   <code/tarballs/03_loops-cxx.tar.bz2>`.
-
-   The goal is to compile a library from a bunch of source files: some of them
-   are to be compiled with ``-O3`` optimization level, while some others with
-   ``-O2``.
-   We will set the compilation flags as properties on the library target.
-   Targets and properties will be discussed at greater length in :ref:`targets`.
-
-   You can download the :download:`complete, working example
-   <code/tarballs/03_loops-cxx_solution.tar.bz2>`.
 
 
 The build tree
@@ -254,32 +216,6 @@ options are only relevant *if* other options are already set to specific values:
   an option ``USE_FOO`` will be presented to the user and it will be true by
   default. If the condition on ``USE_BAR`` and ``USE_ZOT`` is not realized, the
   option is set to false.
-
-
-.. challenge:: User-facing options
-
-   In this exercise, we will work with |option| and |cmake_dependent_option|.
-   We want to allow the user to decide whether to build a library and whether
-   that should be static or shared.
-
-   1. Add a ``USE_LIBRARY`` option
-   2. Add dependent options ``MAKE_STATIC_LIBRARY`` and ``MAKE_SHARED_LIBRARY``.
-      They will only be presented if ``USE_LIBRARY`` is true.
-   3. Use conditionals to orchestrate the build of the static/shared library.
-
-   .. tabs::
-
-      .. tab:: C++
-
-         You can download the :download:`scaffold code <code/tarballs/04_options-cxx.tar.bz2>` and
-         the :download:`complete working example <code/tarballs/04_options-cxx_solution.tar.bz2>`.
-
-      .. tab:: Fortran
-
-         You can download the :download:`scaffold code
-         <code/tarballs/04_options-f.tar.bz2>` and the :download:`complete,
-         working example <code/tarballs/04_options-f_solution.tar.bz2>`.
-
 
 
 .. keypoints::
