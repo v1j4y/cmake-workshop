@@ -1,4 +1,4 @@
-.. _hello-ctest:
+.. _testing:
 
 
 Creating and running tests with CTest
