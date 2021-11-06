@@ -4,10 +4,6 @@
 Finding and using dependencies
 ==============================
 
-.. questions::
-
-   - How can I use CMake to detect and use the dependencies of my project?
-
 .. objectives::
 
    - Learn how to use |find_package|.
@@ -20,6 +16,7 @@ environment. The build system is the appropriate place to check that these
 preconditions are met and that your project can be built correctly.
 In this episode, we will show you few examples of how to detect and use
 dependencies in your CMake build system.
+
 
 Finding dependencies
 --------------------
@@ -52,37 +49,32 @@ needs in almost all use cases.
    are obtained from modules named ``Find<PackageName>.cmake``.
    Packages can also have *components* and you can ask to detect just a handful of them.
 
+- For a large selection of common dependencies, the ``Find<PackageName>.cmake``
+  modules shipped with CMake work flawlessly and are maintained by the CMake
+  developers. This lifts the burden of programming your own dependency
+  detection tricks.
+- |find_package| will set up **imported targets**: targets defined *outside*
+  your project that you can use with your own targets.  The properties on
+  imported targets defines *usage requirements* for the dependencies. A command
+  such as:
 
-We cannot stress this enough: you should **only** use the other commands in the
-``find_`` family in very special, very narrow circumstances.  Why so?
+  .. code-block:: cmake
 
-1. For a large selection of common dependencies, the ``Find<PackageName>.cmake``
-   modules shipped with CMake work flawlessly and are maintained by the CMake
-   developers. This lifts the burden of programming your own dependency
-   detection tricks.
-2. |find_package| will set up **imported targets**: targets defined *outside*
-   your project that you can use with your own targets.  The properties on
-   imported targets defines *usage requirements* for the dependencies. A command
-   such as:
+     target_link_libraries(your-target
+       PUBLIC
+         imported-target
+       )
 
-   .. code-block:: cmake
+  will set compiler flags, definitions, include directories, and link libraries
+  from ``imported-target`` to ``your-target`` *and* to all other targets in
+  your project that will use ``your-target``.
 
-      target_link_libraries(your-target
-        PUBLIC
-          imported-target
-        )
-
-   will set compiler flags, definitions, include directories, and link libraries
-   from ``imported-target`` to ``your-target`` *and* to all other targets in
-   your project that will use ``your-target``.
-
-
-These two points simplify **enormously** the burden of dependency detection and
+These two points above simplify **enormously** the burden of dependency detection and
 consistent usage within a multi-folder project.
 
 
-Using ``find_package``
-++++++++++++++++++++++
+Using find_package
+------------------
 
 When attempting dependency detection with |find_package|, you should make sure that:
 
@@ -92,9 +84,12 @@ When attempting dependency detection with |find_package|, you should make sure t
 
 A complete list of ``Find<PackageName>.cmake`` can be found from the command-line interface:
 
-.. code-block:: bash
+.. code-block:: console
 
    $ cmake --help-module-list | grep "Find"
+
+Another way is to browse: https://github.com/Kitware/CMake/tree/master/Modules
+
 
 .. typealong:: Using OpenMP
 
