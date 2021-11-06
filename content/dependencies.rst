@@ -82,106 +82,90 @@ When attempting dependency detection with |find_package|, you should make sure t
 - Which components, if any, it provides, and
 - What imported targets it will set up.
 
+You can browse the documentation of a module like this:
+
+.. code-block:: console
+
+   $ cmake --help-module FindOpenMP | less
+
+When browsing documentation of ``Find<PackageName>.cmake`` module, **always
+first look for IMPORTED targets**. These are the targets you will want to link
+against. Then all the rest will just work and you won't need to deal with
+compile flags, definitions, and include paths.
+
 A complete list of ``Find<PackageName>.cmake`` can be found from the command-line interface:
 
 .. code-block:: console
 
    $ cmake --help-module-list | grep "Find"
 
-Another way is to browse: https://github.com/Kitware/CMake/tree/master/Modules
+Another way is to browse available modules: https://github.com/Kitware/CMake/tree/master/Modules
 
 
-.. typealong:: Using OpenMP
+.. exercise:: Exercise: working with find_package
 
-   We want to compile the following OpenMP sample code: [#omp]_
+   Choose one of the examples below which is closest to your work and most
+   relevant for your code.
 
+   1. Try to compile and run.
+   2. Browse the documentation of the ``Find<PackageName>.cmake`` module.
+   3. Try to compile with verbosity and verify how the imported target modified
+      compile flags and definitions.
+   4. **Bonus**: Try to adapt what we learned to an example which uses the BLAS or
+      LAPACK library.
 
-   .. literalinclude:: code/day-2/22_taskloop/solution/taskloop.cpp
-      :language: c++
+     .. tabs::
 
-   Note the usage of the ``taskloop`` construct, which was introduced in OpenMP
-   4.5: we need to make sure our C++ compiler is suitably compatible with *at
-   least* that version of the standard.
+        .. tab:: OpenMP (C++)
 
-   From the documentation of the ``FindOpenMP.cmake`` module:
+           Source file (``example.cpp``):
 
-   .. code-block:: bash
+           .. literalinclude:: exercises/find-package/omp/cxx/example.cpp
+              :language: c++
 
-      $ cmake --help-module FindOpenMP | less
+           And the ``CMakeLists.txt`` file:
 
-   we find that the module provides the components ``C``, ``CXX``, and
-   ``Fortran`` and that ``OpenMP::OpenMP_CXX`` target will be provided, if
-   detection is successful.
-   Thus, we do the following:
+           .. literalinclude:: exercises/find-package/omp/cxx/CMakeLists.txt
+              :language: cmake
 
-   .. code-block:: cmake
+        .. tab:: OpenMP (Fortran)
 
-      find_package(OpenMP 4.5 REQUIRED COMPONENTS CXX)
+           Source file (``example.f90``):
 
-      target_link_libraries(task-loop PRIVATE OpenMP::OpenMP_CXX)
+           .. literalinclude:: exercises/find-package/omp/fortran/example.f90
+              :language: fortran
 
-   We can configure and build verbosely. [#verbose]_
-   Notice that compiler flags, include directories, and link libraries are properly resolved by CMake.
+           And the ``CMakeLists.txt`` file:
 
-   You can download the :download:`complete working example <code/tarballs/22_taskloop_solution.tar.bz2>`.
+           .. literalinclude:: exercises/find-package/omp/fortran/CMakeLists.txt
+              :language: cmake
 
-.. challenge:: Using MPI
+        .. tab:: MPI (C++)
 
-   In this exercise, you will attempt compiling a "Hello, world" program that
-   uses the message passing interface (MPI).
+           Source file (``example.cpp``):
 
-   1. Check whether a ``FindMPI.cmake`` module exists in the built-in module
-      library.
-   2. Get acquainted with its components and the variables and imported targets
-      it defines.
+           .. literalinclude:: exercises/find-package/mpi/cxx/example.cpp
+              :language: c++
 
-   .. tabs::
+           And the ``CMakeLists.txt`` file:
 
-      .. tab:: C++
+           .. literalinclude:: exercises/find-package/mpi/cxx/CMakeLists.txt
+              :language: cmake
 
-         Download the :download:`scaffold code <code/tarballs/23_mpi-cxx.tar.bz2>`.
+        .. tab:: MPI (Fortran)
 
-         #. Compile the source file to an executable.
-         #. Link against the MPI imported target.
-         #. Invoke a verbose build and observe how CMake compiles and links.
+           Source file (``example.f90``):
 
-         You can download the :download:`complete working example <code/tarballs/23_mpi-cxx_solution.tar.bz2>`.
+           .. literalinclude:: exercises/find-package/mpi/fortran/example.f90
+              :language: fortran
 
-      .. tab:: Fortran
+           And the ``CMakeLists.txt`` file:
 
-         Download the :download:`scaffold code <code/tarballs/23_mpi-f.tar.bz2>`.
-
-         #. Compile the source file to an executable.
-         #. Link against the MPI imported target.
-         #. Invoke a verbose build and observe how CMake compiles and links.
-
-         You can download the :download:`complete working example <code/tarballs/23_mpi-f_solution.tar.bz2>`.
+           .. literalinclude:: exercises/find-package/mpi/fortran/CMakeLists.txt
+              :language: cmake
 
 
 .. keypoints::
 
    - CMake has a rich ecosystem of modules for finding software dependencies. They are called ``Find<package>.cmake``.
    - The ``Find<package>.cmake`` modules are used through ``find_package(<package>)``.
-
-
-.. rubric:: Footnotes
-
-.. [#omp]
-
-   Example adapted from page 85 in `OpenMP 4.5 examples
-   <http://www.openmp.org/wp-content/uploads/openmp-examples-4.5.0.pdf>`_.
-
-.. [#verbose]
-
-   The way in which to trigger a verbose build depends on the native build tool you are using.
-   For Unix Makefiles:
-
-   .. code-block:: bash
-
-      $ cmake --build build -- VERBOSE=1
-
-   For Ninja:
-
-   .. code-block:: bash
-
-      $ cmake --build build -- -v

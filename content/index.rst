@@ -90,7 +90,7 @@ Timing still being adjusted. It's still too much material:
     15 min ; :ref:`multiple-folders`
     10 min ; Discussion: typical pitfalls
     20 min ; :ref:`environment`
-    15 min ; Exercise: discovering and linking dependencies
+    15 min ; Exercise: :ref:`dependencies`
 
     10 min ; Break
 
