@@ -53,7 +53,7 @@ jupyter_execute_notebooks = "cache"
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
-    "exercises*",
+    "exercises",
     "README*",
     "_build",
     "Thumbs.db",
@@ -73,7 +73,8 @@ html_theme = "sphinx_rtd_theme"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
+html_static_path = ['css']
+
 
 # HTML context:
 from os.path import basename, dirname, realpath
@@ -87,8 +88,6 @@ html_context = {
     "github_version": github_version,
     "conf_py_path": conf_py_path,
 }
-
-todo_include_todos = True
 
 # Intersphinx mapping.  For example, with this you can use
 # :py:mod:`multiprocessing` to link straight to the Python docs of that module.
