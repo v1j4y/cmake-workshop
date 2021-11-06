@@ -29,6 +29,7 @@ Topics not covered
 - Superbuilds
 - Cross-compilation
 - GPUs
+- Mixing C/C++/Fortran with Python
 
 
 .. prereq::
@@ -78,7 +79,7 @@ Schedule
 
     15 min ; :ref:`hello-world-executable` and setup help
     15 min ; :ref:`hello-world-library`
-    10 min ; Compile flags and compile definitions
+    10 min ; :ref:`flags-definitions-debugging`
     20 min ; :ref:`targets`
 
     10 min ; Break
@@ -112,6 +113,7 @@ Schedule
    :caption: Hands-on workshop
 
    hello-cmake
+   flags-definitions-debugging
    targets
    environment
    dependencies
