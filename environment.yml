@@ -8,7 +8,6 @@ dependencies:
   - graphviz
   - libblas
   - liblapack
-  - libuuid
   - openmpi
   - ninja
   - pkg-config
