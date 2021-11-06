@@ -70,7 +70,7 @@ For Ninja:
    .. code-block:: console
 
       $ cmake --build build --target clean
-      $ cmake --build build
+      $ cmake --build build -- VERBOSE=1
 
 
 Printing messages
