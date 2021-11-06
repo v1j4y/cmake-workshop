@@ -126,7 +126,7 @@ demonstrate what visibility levels is to see it in action.
 
 We will demonstrate this with a hello world example where somebody went a bit
 too far with modularity and where we have split the code into 3 libraries and
-the main function (``exercises/property-visibility/cxx/``)::
+the main function (``exercises/property-visibility/``)::
 
   .
   ├── CMakeLists.txt
@@ -164,7 +164,7 @@ Here the main function links to greeting which links to hello_world which links 
 
 This is the ``CMakeLists.txt`` - take some time to study it since there is a quite a lot going on:
 
-.. literalinclude:: exercises/property-visibility/cxx/CMakeLists.txt
+.. literalinclude:: exercises/property-visibility/CMakeLists.txt
    :language: cmake
    :linenos:
    :emphasize-lines: 17
