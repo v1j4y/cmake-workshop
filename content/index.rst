@@ -102,8 +102,8 @@ Timing still being adjusted. It's still too much material:
 
     10 min ; :ref:`testing`
     15 min ; :ref:`testing_exercises`
-    10 min ; Nesting components
-    15 min ; Exercise: composing modules
+    10 min ; :ref:`fetch-content`
+    15 min ; :ref:`fetch-content-exercise`
 
     10 min ; Discussion
 
