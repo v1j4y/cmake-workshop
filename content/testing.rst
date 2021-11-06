@@ -4,29 +4,25 @@
 Creating and running tests with CTest
 =====================================
 
-.. questions::
-
-   - How can we handle the testing stage of our project with CMake?
-
 .. objectives::
 
    - Learn how to produce test executables with CMake.
    - Learn how to run your tests through CTest.
 
-
 Testing is an essential activity in the development cycle. A well-designed test
 suite will help you detect bugs and can also facilitate the onboarding of new
-developers.
-In this episode, we will look into how to use CTest to define and run our tests.
+developers.  In this episode, we will look into how to use CTest to define and
+run our tests.
+
 
 Adding tests to your project
 ----------------------------
 
 In CMake and CTest, a test is any command returning an exit code. It does not
 really matter how the command is issued or what is run: it can be a C++
-executable or a Python script. As long as the execution returns a zero or
-non-zero exit code, CMake will be able to classify the test as succeeded or
-failed, respectively.
+executable or a Python script or a shell script. As long as the execution
+returns a zero or non-zero exit code, CMake will be able to classify the test
+as succeeded or failed, respectively.
 
 There are two steps to perform to integrate your CMake build system with the CTest tool:
 
@@ -47,48 +43,43 @@ There are two steps to perform to integrate your CMake build system with the CTe
    latter sets up what command to run.
 
 
-.. typealong:: Your first test project
+.. typealong:: Our first test project
 
    We will build a simple library to sum integers and an executable using this library.
-   We will work from a :download:`scaffold project <code/tarballs/05_hello-ctest.tar.bz2>`.
+   This example is in ``exercises/testing/``.
 
-   .. code-block:: cmake
+   If you compile the code (please try!) you get an executable that can sum integers
+   given on the command line:
 
-      cmake_minimum_required(VERSION 3.13)
+   .. code-block:: console
 
-      project(hello-ctest LANGUAGES CXX)
+      $ ./sum_up 1 2 3 4 5
 
-      set(CMAKE_CXX_STANDARD 14)
-      set(CMAKE_CXX_EXTENSIONS OFF)
-      set(CMAKE_CXX_STANDARD_REQUIRED ON)
+      15
 
-      add_library(sum_integers sum_integers.cpp)
+      $ ./sum_up 100 200
 
-      add_executable(sum_up main.cpp)
-      target_link_libraries(sum_up PRIVATE sum_integers)
+      300
 
-   Alongside the library and the main executable, we will also produce an
-   executable to test the ``sum_integers`` library.
+   The core of this example project is the ``sum_integers`` function:
 
-   .. code-block:: cmake
+   .. literalinclude:: exercises/testing/sum_integers.cpp
+      :language: c++
 
-      add_executable(cpp_test test.cpp)
-      target_link_libraries(cpp_test PRIVATE sum_integers)
+   Our goal will be to write tests for this function.
 
-   It is now time to set up CTest:
+   As we wrote above, any script or binary that can return zero or non-zero can be used for
+   this and we will start with this basic ``test.cpp``:
 
-   .. code-block:: cmake
+   .. literalinclude:: exercises/testing/test.cpp
+      :language: c++
+      :emphasize-lines: 9, 11
 
-      enable_testing()
+   This is how we can hook it up to CMake/CTest:
 
-   and declare our test, by specifying which command to run:
-
-   .. code-block:: cmake
-
-      add_test(
-        NAME cpp_test
-        COMMAND $<TARGET_FILE:cpp_test>
-      )
+   .. literalinclude:: exercises/testing/CMakeLists.txt
+      :language: cmake
+      :emphasize-lines: 20, 21, 24, 27-30
 
    Note the use of `generator expression (gen-exp)
    <https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html>`_
@@ -96,53 +87,30 @@ There are two steps to perform to integrate your CMake build system with the CTe
 
    We can now compile and run our test:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ cmake -S. -Bbuild
       $ cd build
       $ cmake --build .
       $ ctest
 
-   You can download the :download:`complete, working example <code/tarballs/05_hello-ctest.tar.bz2>`.
 
-.. challenge:: Running the tests through a shell script
+Test properties: labels, timeout, and cost
+------------------------------------------
 
-   Any command can be used to run tests. In this exercise, we will extend the
-   previous CMake code to test the main executable within a shell script.
+When you use |add_test|, you give a unique name to each test.  But using
+|set_tests_properties| we can give tests other properties such as labels,
+timeout, cost, and many more.
 
-   1. Get the :download:`scaffold code <code/tarballs/06_bash-ctest.tar.bz2>`.
-   2. Find the appropriate bash executable to run ``test.sh`` with. You should
-      use the ``find_program`` command of CMake.
-   3. Add another invocation to |add_test| that will be equivalent to running:
+For a complete list of properties that can be set on tests search for
+"Properties on Tests" in the output of:
 
-      .. code-block:: bash
+.. code-block:: console
 
-         $ ./test.sh sum_up
+   $ cmake --help-properties
 
-   4. Build the project and run CTest.
+or visit the CMake documentation `online <https://cmake.org/cmake/help/v3.19/manual/cmake-properties.7.html#properties-on-tests>`_.
 
-   You can download the :download:`complete, working example <code/tarballs/06_bash-ctest_solution.tar.bz2>`.
-
-.. challenge:: Running the tests through a Python script
-
-   It is much more common nowadays to use Python, rather than shell scripts.  In
-   this exercise, we will add two more tests to our project. These new tests
-   will run the main executable through a Python script.
-
-   #. Get the :download:`scaffold code <code/tarballs/07_python-ctest.tar.bz2>`.
-   #. Find the Python interpreter to run ``test.py``. You should
-      use the |find_package| command of CMake.
-   #. Add another invocation to |add_test| that will be equivalent to running:
-
-      .. code-block:: bash
-
-         $ python test.py --executable sum_up
-
-   #. The ``test.py`` script accepts a ``--short`` command-line option. Add
-      another test that uses this option in the command.
-   #. Build the project and run CTest.
-
-   You can download the :download:`complete, working example <code/tarballs/07_python-ctest_solution.tar.bz2>`.
 
 The CTest command-line interface
 --------------------------------
@@ -154,14 +122,14 @@ The CTest command-line interface
 
    The ``ctest`` command is part of the CMake installation. We can find help on its usage with:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ ctest --help
 
    **Remember**, to run your tests through CTest, you will first need to move
    into the build folder:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ cd build
       $ ctest
@@ -169,15 +137,20 @@ The CTest command-line interface
    This will run all the tests in your test suite.
    You can list the names of the tests in the test suite with:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ ctest -N
 
-   Verbosity options are also quite helpful, especially when debugging failures.
+   Verbosity options are also quite helpful, especially when debugging failures:
+
+   .. code-block:: text
+
+      -V,--verbose                 = Enable verbose output from tests.
+      -VV,--extra-verbose          = Enable more verbose output from tests.
+
    With ``--output-on-failure``, CTest will print to screen the output of
    failing tests.
-   If you would like to print to screen the full invocation for every test, use
-   the ``--verbose`` option.
+
    You can select *subsets* of test to run:
 
    - By *name*, with the ``-R <regex>`` flag. Any test whose *name* can be
@@ -192,151 +165,57 @@ The CTest command-line interface
 
    It is possible to rerun failed tests with:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ ctest --rerun-failed
 
    Finally, you can parallelize test execution:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ ctest -j N
       $ ctest --parallel N
 
-   **Beware!** The order of execution of tests is not guaranteed: if some tests
-   are interdependent, you will have to explicitly state that in your build
-   system.
+
+.. _testing_exercises:
+
+Exercises: testing with CTest
+-----------------------------
+
+.. challenge:: Exercise: adding tests and labels
+
+   1. Build the "summing up" example from above.
+
+   2. Run the ``cpp_test`` binary directly (it will produce no output).
+
+   3. Run ``ctest --verbose``.
+
+   4. Try to break the code and check whether CTest will detect the degradation.
+
+   5. Try to add a second test to the project.
 
 
-Test properties: labels, timeout, and cost
-------------------------------------------
+.. challenge:: Exercise: running tests in parallel and understanding the COST property
 
-When you use |add_test|, you give a unique name to each test. As we have seen,
-you can use these names to filter which tests to run in the suite. This can be
-extremely valuable when the test suite is large and you really only need to run
-few of the many tests.
-However, the naming mechanism does not allow to easily group tests. We could in
-principle add a suffix to all tests in a given group and then filter them with
-an appropriate regex, but what if we had multiple groups to which tests could
-belong. This is a very common situation in practice!
-Fortunately, we can set **properties** on tests and labels are among the
-available properties.
+   This example is in ``exercises/testing-parallel/``.
 
-.. signature:: |set_tests_properties|
+   1. Build the project and run the test set with ``ctest``, observe the order of tests.
 
-   .. code-block:: cmake
+   2. Now uncomment the lines containing COST in ``CMakeLists.txt``:
 
-      set_tests_properties(test1 [test2...] PROPERTIES prop1 value1 prop2 value2)
+   .. literalinclude:: exercises/testing-parallel/CMakeLists.txt
+      :language: cmake
+      :emphasize-lines: 17, 22, 25, 28, 31
 
+   3. Run the tests again and observe the order now.
 
-.. challenge:: Set labels on tests
+   4. Run the tests in parallel on several cores (if you have them available).
 
-   We will run some tests using Python and we want to group them into two categories:
-
-   - ``quick`` for tests with a very short execution time.
-   - ``long`` for benchmarking tests with a longer execution time.
-
-   Get the :download:`scaffold code <code/tarballs/08_ctest-labels.tar.bz2>`.
-
-   .. tabs::
-
-      .. tab:: Labeling
-
-         1. Find the Python interpreter.
-         2. Enable testing.
-         3. Add the six tests in the ``test`` folder. Give each of them a unique name.
-         4. Use |set_tests_properties| to set labels for the tests:
-
-            - ``feature-a.py``, ``feature-b.py``, and ``feature-c.py`` should be
-              in the ``quick`` group.
-            - ``feature-d.py``, ``benchmark-a.py``, and ``benchmark-b.py``
-              should be in the ``long`` group.
-
-         5. Check that everything works as expected
-
-      .. tab:: Bonus
-
-         Try simplifying the repeated calls to |add_test| with a |foreach| loop.
-         You might need to apply some filename manipulations: check out the
-         ``file`` command.
-
-   You can download the :download:`complete, working example <code/tarballs/08_ctest-labels_solution.tar.bz2>`.
-
-
-Among the many properties that can be set on tests, we would like to highlight the following:
-
-- ``WILL_FAIL``. CTest will mark tests as passed when the corresponding command
-  returns with a non-zero exit code. Use this property to test for expected
-  failures.
-- ``COST``. The first time you run your tests, CTest will save the run time of
-  each. In this way, subsequent runs of the test suite will start by executing
-  the longest running tests first. You can influence this behavior by declaring
-  up front the "cost" of each test.
-- ``TIMEOUT``. Some tests might run for a long time: you can set an explicit
-  timeout if you want to be more or less tolerant of variations in execution
-  time.
-
-.. challenge:: More properties!
-
-   Let's play around with the properties we have just introduced.
-
-   .. tabs::
-
-      .. tab:: WILL_FAIL
-
-         Get the :download:`scaffold code <code/tarballs/09_ctest-will-fail.tar.bz2>`.
-
-         1. Create a project with no language.
-         2. Find the Python interpreter.
-         3. Enable testing.
-         4. Add a test running the ``test.py`` script.
-
-         Try to run the tests and observe what happens.  Now set the
-         ``WILL_FAIL`` property to true and observe what changes when running
-         the tests.
-
-         You can download the :download:`complete, working example <code/tarballs/09_ctest-will-fail_solution.tar.bz2>`.
-
-      .. tab:: COST
-
-         Get the :download:`scaffold code <code/tarballs/10_ctest-cost.tar.bz2>`.
-
-         1. Enable testing in the ``CMakeLists.txt`` file.
-         2. Add tests running each of the scripts in the ``test`` folder.
-         3. Run the tests in parallel and observe how long their execution takes.
-         4. Re-run the tests and observe how CTest orders their execution.
-         5. Now set the ``COST`` property. What has changed when re-running the tests.
-
-         You can download the :download:`complete, working example <code/tarballs/10_ctest-cost_solution.tar.bz2>`.
-
-      .. tab:: TIMEOUT
-
-         Get the :download:`scaffold code <code/tarballs/11_ctest-timeout.tar.bz2>`.
-
-         1. Create a project with no language.
-         2. Find the Python interpreter.
-         3. Enable testing.
-         4. Add a test running the ``test.py`` script.
-
-         Try to run the tests and observe how long the test takes to execute.
-         Now set the ``TIMEOUT`` property to a value *less* than what you just
-         observed and re-run the tests.
-
-         You can download the :download:`complete, working example <code/tarballs/11_ctest-timeout_solution.tar.bz2>`.
-
-
-For a complete list of properties that can be set on tests search for
-"Properties on Tests" in the output of:
-
-.. code-block:: bash
-
-   $ cmake --help-properties
-
-or visit the CMake documentation `online <https://cmake.org/cmake/help/v3.19/manual/cmake-properties.7.html#properties-on-tests>`_.
-
-
+   5. Discuss why it can be beneficial to define the COST if some tests take
+      much longer than others (we could have also reordered them manually).
 
 .. keypoints::
 
    - Any custom command can be defined as a test in CMake.
    - Tests can be run through CTest.
+   - CTest particularly shines when running sequential tests in parallel.

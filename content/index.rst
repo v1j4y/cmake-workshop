@@ -100,8 +100,8 @@ Timing still being adjusted. It's still too much material:
 
     10 min ; Break
 
-    10 min ; Testing
-    15 min ; Exercise: testing with CTest
+    10 min ; :ref:`testing`
+    15 min ; :ref:`testing_exercises`
     10 min ; Nesting components
     15 min ; Exercise: composing modules
 
