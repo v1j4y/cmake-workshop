@@ -111,6 +111,7 @@ satisfy this dependency for us when needed.
         $ ctest --verbose
 
    5. How would you adapt ``CMakeLists.txt`` to run them as two separate tests in CTest?
+      Try it out.
 
    6. Discuss the pros and cons of running them as one or as two from
       CMake/CTest perspective.
