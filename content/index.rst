@@ -65,6 +65,12 @@ Topics not covered
    setup
 
 
+.. note::
+
+   You can find all examples, exercises, and solution at https://github.com/coderefinery/cmake-workshop.
+   In there navigate to `content/exercises/ <https://github.com/coderefinery/cmake-workshop/tree/main/content/exercises>`__.
+
+
 Schedule
 --------
 
