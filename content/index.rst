@@ -30,6 +30,7 @@ Topics not covered
 - Cross-compilation
 - GPUs
 - Mixing C/C++/Fortran with Python
+- pkg-config for finding dependencies
 
 
 .. prereq::

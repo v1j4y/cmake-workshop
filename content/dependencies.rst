@@ -163,47 +163,10 @@ A complete list of ``Find<PackageName>.cmake`` can be found from the command-lin
          You can download the :download:`complete working example <code/tarballs/23_mpi-f_solution.tar.bz2>`.
 
 
-Alternatives: ``Config`` scripts and ``pkg-config``
-+++++++++++++++++++++++++++++++++++++++++++++++++++
-
-What to do when there is no built-in ``Find<PackageName>.cmake`` module for a package you depend on?
-The package developers might be already prepared to help you out:
-
-- They ship the CMake-specific file ``<PackageName>Config.cmake`` which
-  describes how the imported target should be made for their package.
-  In this case, you need to point CMake to the folder containing the ``Config`` file using the
-  special ``<PackageName>_DIR`` variable:
-
-  .. code-block:: bash
-
-     $ cmake -S. -Bbuild -D<PackageName>_DIR=/folder/containing/<PackageName>Config.cmake
-
-- They include a ``.pc`` file, which, on Unix-like platforms, can be detected
-  with the ``pkg-config`` utility. You can then leverage ``pkg-config`` through CMake:
-
-  .. code-block:: cmake
-
-     # find pkg-config
-     find_package(PkgConfig REQUIRED)
-     # ask pkg-config to find the UUID library and prepare an imported target
-     pkg_search_module(UUID REQUIRED uuid IMPORTED_TARGET)
-     # use the imported target
-     if(TARGET PkgConfig::UUID)
-       message(STATUS "Found libuuid")
-     endif()
-
-  This was the strategy adopted in :ref:`probing` when testing the use of the
-  UUID library.
-
-
 .. keypoints::
 
    - CMake has a rich ecosystem of modules for finding software dependencies. They are called ``Find<package>.cmake``.
    - The ``Find<package>.cmake`` modules are used through ``find_package(<package>)``.
-   - You can also use the classic Unix tool ``pkg-config`` to find software
-     dependencies, but this is not as robust as the CMake-native
-     ``Find<package>`` modules.
-
 
 
 .. rubric:: Footnotes
