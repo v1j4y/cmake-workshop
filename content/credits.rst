@@ -15,7 +15,9 @@ This present workshop material is derived work from the workshop organized
 by ENCCS (see below).
 
 - The material has been shortened and reordered
-- (here I will emphasize other changes as they come in)
+- Many examples and exercise have been simplified
+- Removed the part about probing compilation, linking, and execution
+- Removed the part about mixing C/C++/Fortran with Python
 
 
 Instructional material
