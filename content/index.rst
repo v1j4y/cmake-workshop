@@ -67,6 +67,8 @@ Topics not covered
 Schedule
 --------
 
+Timing still being adjusted. It's still too much material:
+
 .. csv-table::
    :widths: auto
    :align: center
@@ -86,7 +88,7 @@ Schedule
 
     15 min ; :ref:`multiple-folders`
     10 min ; Discussion: typical pitfalls
-    10 min ; Environment, and dependencies
+    20 min ; :ref:`environment`
     15 min ; Exercise: discovering and linking dependencies
 
     10 min ; Break
