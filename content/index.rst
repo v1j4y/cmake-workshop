@@ -103,7 +103,7 @@ Timing still being adjusted. It's still too much material:
     15 min ; :ref:`testing_exercises`
     20 min ; :ref:`fetch-content`
 
-    15 min ; Growing projects: pitfalls and recommendations
+    15 min ; :ref:`growing-projects`
 
 
 .. toctree::
@@ -128,6 +128,7 @@ Timing still being adjusted. It's still too much material:
    dependencies
    testing
    fetch-content
+   growing-projects
 
 
 .. toctree::
