@@ -94,18 +94,16 @@ Timing still being adjusted. It's still too much material:
     10 min ; Break
 
     15 min ; :ref:`multiple-folders`
-    10 min ; Discussion: typical pitfalls
     20 min ; :ref:`environment`
-    15 min ; Exercise: :ref:`dependencies`
+    20 min ; :ref:`dependencies`
 
     10 min ; Break
 
     10 min ; :ref:`testing`
     15 min ; :ref:`testing_exercises`
-    10 min ; :ref:`fetch-content`
-    15 min ; :ref:`fetch-content-exercise`
+    20 min ; :ref:`fetch-content`
 
-    10 min ; Discussion
+    15 min ; Growing projects: pitfalls and recommendations
 
 
 .. toctree::
