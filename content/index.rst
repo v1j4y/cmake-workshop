@@ -81,7 +81,7 @@ Timing still being adjusted. It's still too much material:
    :delim: ;
 
     15 min ; :ref:`motivation`
-    15 min ; :ref:`quick-tour`
+    15 min ; :ref:`tour`
 
            ; Lunch break
 
@@ -111,7 +111,7 @@ Timing still being adjusted. It's still too much material:
    :caption: Introduction
 
    motivation
-   quick-tour
+   tour
 
 
 .. toctree::
