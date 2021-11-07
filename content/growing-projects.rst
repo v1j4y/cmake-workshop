@@ -151,6 +151,10 @@ Do this instead (sources, definitions, and tests defined in the "closest" ``CMak
        └── parser
            └── CMakeLists.txt
 
+The reason is that this will minimize side-effects, ordering effects, and
+simplify maintenance for those who want to add or rename source files: they can
+do it in one place, close to where they are coding.
+
 
 Order and side effects
 ----------------------
