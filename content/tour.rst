@@ -7,7 +7,8 @@ Brief tour to demonstrate concepts/capabilities
 .. objectives::
 
    - Get a feel for how CMake looks.
-   - See 2-3 use cases where CMake shines (code generation, testing, modular code structure).
+   - See 2-3 use cases where CMake shines (environment/library discovery, code
+     generation, testing, modular code structure).
    - The goal here is not to focus on syntax or details but rather the big picture and the potential.
 
 
