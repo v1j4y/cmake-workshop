@@ -175,3 +175,38 @@ Popular:
 General:
 
 - Not bound to the generation of Makefiles
+
+Discovery of environment, libraries, packages:
+
+- Huge community
+- Many solutions already exist: https://github.com/Kitware/CMake/tree/master/Modules
+
+
+CMake is a domain-specific language
+-----------------------------------
+
+CMake offers a domain-specific language (DSL) to describe how to generate a
+build system native to the specific platform you might be running on.
+
+It contains everything we expect from a language:
+
+- variables
+- means to iterate through collections
+- flow-control (if-statements)
+- options
+- command-line interface
+- modules
+- includes
+- functions
+- macros
+
+To see all available commands:
+
+.. code-block:: console
+
+   $ cmake --help-command-list
+
+This means we can implement "everything" in CMake and there will be many ways
+to achieve any solution. But the language will also not prevent us from
+implementing complicated contraptions. In the tutorial/workshop part we will
+revisit some good and less good solutions.
