@@ -206,6 +206,12 @@ To see all available commands:
 
    $ cmake --help-command-list
 
+Help on a specific built-in command, function or macro can be obtained with:
+
+.. code-block:: console
+
+   $ cmake --help-command target_link_libraries
+
 This means we can implement "everything" in CMake and there will be many ways
 to achieve any solution. But the language will also not prevent us from
 implementing complicated contraptions. In the tutorial/workshop part we will
