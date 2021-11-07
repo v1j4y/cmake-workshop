@@ -394,9 +394,54 @@ visible at the level at which it is declared and all higher levels.
    5. Discuss pros and cons of one ``CMakeLists.txt`` compared to many.
 
 
-.. discussion:: Target properties vs. variables
+.. discussion:: Target properties vs. global settings
 
-   Write me ...
+   Let us return to the very granular hello world example from futher above.
+   In CMake there are many ways to achieve something and here we compare two.
+
+   Please discuss pros and cons and what possible problems you see or
+   anticipate.
+
+   .. tabs::
+
+      .. tab:: OK example
+
+         This is the example we have used further above. It is not perfect
+         but much better than the example in the other tab.
+
+         .. literalinclude:: exercises/property-visibility/CMakeLists.txt
+            :language: cmake
+
+      .. tab:: Bad example
+
+         This is a bad example that works (on Linux at least) although it
+         looks more compact and possibly neater at first sight.  Can you
+         point out the problems that you see or anticipate with this
+         structure?
+
+         .. literalinclude:: exercises/bad-example-using-variables/CMakeLists.txt
+            :language: cmake
+
+   .. solution::
+
+      Let us first note that the left solution is not perfect either. In a real
+      larger project we would probably want to define targets closer to the
+      sources.
+
+      Problems with the "bad" solution (perhaps you found other problems?):
+
+      - Compile definition ``-DMY_DEFINITION`` affects entire project.
+      - Also the include directories and library link line settings affect the entire project.
+      - The order of ``link_libraries`` matters.
+      - If you rename a library you suddenly need to edit more places than in
+        the example using targets.
+      - ``CMakeLists.txt`` became more brittle to order of lines.
+      - It became more difficult to move sections to other ``CMakeLists.txt`` files.
+      - Risk is higher to forget some definitions or library location or
+        include directories behind after moving sections away.
+      - Settings in the target-based approach have more local scope. In the "bad" example
+        settings have global scope and risk having unintended side effects on other CMake code
+        in a larger project.
 
 
 .. keypoints::
