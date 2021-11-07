@@ -8,12 +8,7 @@ Brief tour to demonstrate concepts/capabilities
 
    - Get a feel for how CMake looks.
    - See 2-3 use cases where CMake shines (code generation, testing, modular code structure).
-
-
-.. instructor-note::
-
-   Here I will build an example project and point out some of the advantages of
-   CMake to motivate the workshop in the afternoon.
+   - The goal here is not to focus on syntax or details but rather the big picture and the potential.
 
 
 .. note::
