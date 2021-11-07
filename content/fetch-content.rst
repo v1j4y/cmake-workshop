@@ -89,7 +89,7 @@ satisfy this dependency for us when needed.
 
    .. literalinclude:: exercises/fetch-content/CMakeLists.txt
       :language: cmake
-      :emphasize-lines: 20, 23-26, 29, 33
+      :emphasize-lines: 20, 23-26, 29, 33, 40-41
 
 
    2. Build the code and run the tests with:
