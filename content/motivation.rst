@@ -191,7 +191,7 @@ build system native to the specific platform you might be running on.
 It contains everything we expect from a language:
 
 - variables
-- means to iterate through collections
+- means to iterate through collections: foreach
 - flow-control (if-statements)
 - options
 - command-line interface
