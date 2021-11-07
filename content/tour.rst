@@ -29,7 +29,7 @@ We will discuss an example project "calculator" which can add and subtract
 and is a mixed Fortran-C++ project with the following layout:
 
 .. code-block:: text
-   :emphasize-lines: 2, 6, 13
+   :emphasize-lines: 2, 6-7, 13
 
    calculator/
    ├── CMakeLists.txt

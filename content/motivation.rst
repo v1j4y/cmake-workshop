@@ -181,6 +181,11 @@ Discovery of environment, libraries, packages:
 - Huge community
 - Many solutions already exist: https://github.com/Kitware/CMake/tree/master/Modules
 
+Can co-exist with other tools:
+
+- Non-intrusive: All you need is a ``CMakeLists.txt``. CMake won't mind if other build tools
+  are there as well in the project.
+
 
 CMake is a domain-specific language
 -----------------------------------
