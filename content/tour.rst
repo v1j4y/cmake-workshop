@@ -8,7 +8,7 @@ Brief tour to demonstrate concepts/capabilities
 
    - Get a feel for how CMake looks.
    - See 2-3 use cases where CMake shines (environment/library discovery, code
-     generation, testing, modular code structure).
+     generation, testing, modular code structure, Fortran 90 support).
    - The goal here is not to focus on syntax or details but rather the big picture and the potential.
 
 
