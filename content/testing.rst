@@ -46,7 +46,7 @@ There are two steps to perform to integrate your CMake build system with the CTe
 .. typealong:: Our first test project
 
    We will build a simple library to sum integers and an executable using this library.
-   This example is in ``exercises/testing/``.
+   This example is in ``examples/testing/``.
 
    If you compile the code (please try!) you get an executable that can sum integers
    given on the command line:
@@ -63,7 +63,7 @@ There are two steps to perform to integrate your CMake build system with the CTe
 
    The core of this example project is the ``sum_integers`` function:
 
-   .. literalinclude:: exercises/testing/sum_integers.cpp
+   .. literalinclude:: examples/testing/sum_integers.cpp
       :language: c++
 
    Our goal will be to write tests for this function.
@@ -71,13 +71,13 @@ There are two steps to perform to integrate your CMake build system with the CTe
    As we wrote above, any script or binary that can return zero or non-zero can be used for
    this and we will start with this basic ``test.cpp``:
 
-   .. literalinclude:: exercises/testing/test.cpp
+   .. literalinclude:: examples/testing/test.cpp
       :language: c++
       :emphasize-lines: 9, 11
 
    This is how we can hook it up to CMake/CTest:
 
-   .. literalinclude:: exercises/testing/CMakeLists.txt
+   .. literalinclude:: examples/testing/CMakeLists.txt
       :language: cmake
       :emphasize-lines: 20, 21, 24, 27-30
 
@@ -197,13 +197,13 @@ Exercises: testing with CTest
 
 .. challenge:: Exercise: running tests in parallel and understanding the COST property
 
-   This example is in ``exercises/testing-parallel/``.
+   This example is in ``examples/testing-parallel/``.
 
    1. Build the project and run the test set with ``ctest``, observe the order of tests.
 
    2. Now uncomment the lines containing COST in ``CMakeLists.txt``:
 
-   .. literalinclude:: exercises/testing-parallel/CMakeLists.txt
+   .. literalinclude:: examples/testing-parallel/CMakeLists.txt
       :language: cmake
       :emphasize-lines: 17, 22, 25, 28, 31
 

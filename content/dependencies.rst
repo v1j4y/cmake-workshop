@@ -120,48 +120,48 @@ Another way is to browse available modules: https://github.com/Kitware/CMake/tre
 
            Source file (``example.cpp``):
 
-           .. literalinclude:: exercises/find-package/omp/cxx/example.cpp
+           .. literalinclude:: examples/find-package/omp/cxx/example.cpp
               :language: c++
 
            And the ``CMakeLists.txt`` file:
 
-           .. literalinclude:: exercises/find-package/omp/cxx/CMakeLists.txt
+           .. literalinclude:: examples/find-package/omp/cxx/CMakeLists.txt
               :language: cmake
 
         .. tab:: OpenMP (Fortran)
 
            Source file (``example.f90``):
 
-           .. literalinclude:: exercises/find-package/omp/fortran/example.f90
+           .. literalinclude:: examples/find-package/omp/fortran/example.f90
               :language: fortran
 
            And the ``CMakeLists.txt`` file:
 
-           .. literalinclude:: exercises/find-package/omp/fortran/CMakeLists.txt
+           .. literalinclude:: examples/find-package/omp/fortran/CMakeLists.txt
               :language: cmake
 
         .. tab:: MPI (C++)
 
            Source file (``example.cpp``):
 
-           .. literalinclude:: exercises/find-package/mpi/cxx/example.cpp
+           .. literalinclude:: examples/find-package/mpi/cxx/example.cpp
               :language: c++
 
            And the ``CMakeLists.txt`` file:
 
-           .. literalinclude:: exercises/find-package/mpi/cxx/CMakeLists.txt
+           .. literalinclude:: examples/find-package/mpi/cxx/CMakeLists.txt
               :language: cmake
 
         .. tab:: MPI (Fortran)
 
            Source file (``example.f90``):
 
-           .. literalinclude:: exercises/find-package/mpi/fortran/example.f90
+           .. literalinclude:: examples/find-package/mpi/fortran/example.f90
               :language: fortran
 
            And the ``CMakeLists.txt`` file:
 
-           .. literalinclude:: exercises/find-package/mpi/fortran/CMakeLists.txt
+           .. literalinclude:: examples/find-package/mpi/fortran/CMakeLists.txt
               :language: cmake
 
 

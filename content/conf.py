@@ -53,7 +53,7 @@ jupyter_execute_notebooks = "cache"
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
-    "exercises",
+    "examples",
     "README*",
     "_build",
     "Thumbs.db",

@@ -80,14 +80,14 @@ satisfy this dependency for us when needed.
    (we stay with the example from :ref:`testing`)
    and so we changed ``test.cpp`` to now contain:
 
-   .. literalinclude:: exercises/fetch-content/test.cpp
+   .. literalinclude:: examples/fetch-content/test.cpp
       :language: c++
 
    There are two tests now, they also have tags (``[short]`` and ``[long]``).
 
    1. Adapt the ``CMakeLists.txt`` with these new lines:
 
-   .. literalinclude:: exercises/fetch-content/CMakeLists.txt
+   .. literalinclude:: examples/fetch-content/CMakeLists.txt
       :language: cmake
       :emphasize-lines: 20, 23-26, 29, 33, 40-41
 

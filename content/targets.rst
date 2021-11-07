@@ -126,7 +126,7 @@ demonstrate what visibility levels is to see it in action.
 
 We will demonstrate this with a hello world example where somebody went a bit
 too far with modularity and where we have split the code into 3 libraries and
-the main function (``exercises/property-visibility/``)::
+the main function (``examples/property-visibility/``)::
 
   .
   ├── CMakeLists.txt
@@ -164,7 +164,7 @@ Here the main function links to greeting which links to hello_world which links 
 
 This is the ``CMakeLists.txt`` - take some time to study it since there is a quite a lot going on:
 
-.. literalinclude:: exercises/property-visibility/CMakeLists.txt
+.. literalinclude:: examples/property-visibility/CMakeLists.txt
    :language: cmake
    :linenos:
    :emphasize-lines: 17
@@ -277,7 +277,7 @@ visible at the level at which it is declared and all higher levels.
    which reuses an external project.
    Your goal is to:
 
-   1. Build the main executable at ``exercises/multiple-folders/problem/``.
+   1. Build the main executable at ``examples/multiple-folders/problem/``.
 
    2. Where is it located in the build tree? Remember
       that CMake generates a build tree mirroring the source tree.
@@ -310,7 +310,7 @@ visible at the level at which it is declared and all higher levels.
 
       .. tab:: C++
 
-         You want to arrive at this (``exercises/multiple-folders/solution/cxx/``) structure:
+         You want to arrive at this (``examples/multiple-folders/solution/cxx/``) structure:
 
          .. code-block:: text
 
@@ -346,7 +346,7 @@ visible at the level at which it is declared and all higher levels.
 
       .. tab:: Fortran
 
-         You want to arrive at this (``exercises/multiple-folders/solution/fortran/``) structure:
+         You want to arrive at this (``examples/multiple-folders/solution/fortran/``) structure:
 
          .. code-block:: text
 
@@ -409,7 +409,7 @@ visible at the level at which it is declared and all higher levels.
          This is the example we have used further above. It is not perfect
          but much better than the example in the other tab.
 
-         .. literalinclude:: exercises/property-visibility/CMakeLists.txt
+         .. literalinclude:: examples/property-visibility/CMakeLists.txt
             :language: cmake
 
       .. tab:: Bad example
@@ -419,7 +419,7 @@ visible at the level at which it is declared and all higher levels.
          probably not on macOS and Windows.  Can you point out the problems
          that you see or anticipate with this structure?
 
-         .. literalinclude:: exercises/bad-example-using-variables/CMakeLists.txt
+         .. literalinclude:: examples/bad-example-using-variables/CMakeLists.txt
             :language: cmake
             :emphasize-lines: 3
 

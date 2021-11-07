@@ -33,7 +33,7 @@ Sometimes we need to write code that performs different operations based on
 compile-time constants.
 Like in this example (``example.cpp``):
 
-.. literalinclude:: exercises/os-dependent/example.cpp
+.. literalinclude:: examples/os-dependent/example.cpp
    :language: c++
 
 
@@ -41,7 +41,7 @@ Like in this example (``example.cpp``):
 
    We can do this with the following ``CMakeLists.txt``:
 
-   .. literalinclude:: exercises/os-dependent/CMakeLists.txt
+   .. literalinclude:: examples/os-dependent/CMakeLists.txt
       :language: cmake
 
    We achieved this with a combination of host system
@@ -63,30 +63,30 @@ necessary compile-time constants.
 
 Here is an example source file (``example.cpp``):
 
-.. literalinclude:: exercises/configure-file/problem/example.cpp
+.. literalinclude:: examples/configure-file/problem/example.cpp
    :language: c++
 
 The file ``config.h`` does not exist, it will be generated at configure time
 from ``config-template.h``:
 
-.. literalinclude:: exercises/configure-file/problem/config-template.h
+.. literalinclude:: examples/configure-file/problem/config-template.h
    :language: c
 
 Here is the ``CMakeLists.txt`` which takes care of introspection and also
 generates the file ``config.h``:
 
-.. literalinclude:: exercises/configure-file/problem/CMakeLists.txt
+.. literalinclude:: examples/configure-file/problem/CMakeLists.txt
    :language: cmake
    :emphasize-lines: 29
 
 
 .. challenge:: Exercise: record more useful information using configure_file
 
-   Your goal is to adapt the above example (``exercises/configure-file/problem/``)
+   Your goal is to adapt the above example (``examples/configure-file/problem/``)
    and make it possible to get the compiler and compiler version into the
    output of your code:
 
-   .. literalinclude:: exercises/configure-file/problem/example.cpp
+   .. literalinclude:: examples/configure-file/problem/example.cpp
       :language: c++
       :emphasize-lines: 15-16
 

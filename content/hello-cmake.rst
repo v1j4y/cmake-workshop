@@ -26,12 +26,12 @@ Type-along: building an executable
 
         .. tab:: C++
 
-           .. literalinclude:: exercises/hello-executable/cxx/hello.cpp
+           .. literalinclude:: examples/hello-executable/cxx/hello.cpp
               :language: c++
 
         .. tab:: Fortran
 
-           .. literalinclude:: exercises/hello-executable/fortran/hello.f90
+           .. literalinclude:: examples/hello-executable/fortran/hello.f90
               :language: fortran
 
    2. The folder contains only the source code. We need to add a file called
@@ -42,12 +42,12 @@ Type-along: building an executable
 
         .. tab:: C++
 
-           .. literalinclude:: exercises/hello-executable/cxx/CMakeLists.txt
+           .. literalinclude:: examples/hello-executable/cxx/CMakeLists.txt
               :language: cmake
 
         .. tab:: Fortran
 
-           .. literalinclude:: exercises/hello-executable/fortran/CMakeLists.txt
+           .. literalinclude:: examples/hello-executable/fortran/CMakeLists.txt
               :language: cmake
 
    3. We are ready to call CMake and get our build system:
@@ -131,29 +131,29 @@ Exercise: building and linking a library
 
          hello.cpp:
 
-         .. literalinclude:: exercises/hello-library/cxx/hello.cpp
+         .. literalinclude:: examples/hello-library/cxx/hello.cpp
             :language: c++
 
          greeting.cpp:
 
-         .. literalinclude:: exercises/hello-library/cxx/greeting.cpp
+         .. literalinclude:: examples/hello-library/cxx/greeting.cpp
             :language: c++
 
          greeting.hpp:
 
-         .. literalinclude:: exercises/hello-library/cxx/greeting.hpp
+         .. literalinclude:: examples/hello-library/cxx/greeting.hpp
             :language: c++
 
       .. tab:: Fortran
 
          hello.f90:
 
-         .. literalinclude:: exercises/hello-library/fortran/hello.f90
+         .. literalinclude:: examples/hello-library/fortran/hello.f90
             :language: fortran
 
          greeting.f90:
 
-         .. literalinclude:: exercises/hello-library/fortran/greeting.f90
+         .. literalinclude:: examples/hello-library/fortran/greeting.f90
             :language: fortran
 
    **Your first goal**: try to build this by adapting the `CMakeLists.txt` from
@@ -183,12 +183,12 @@ other targets (executables or other libraries) with |target_link_libraries|.
 
       .. tab:: C++
 
-         .. literalinclude:: exercises/hello-library/cxx/CMakeLists.txt
+         .. literalinclude:: examples/hello-library/cxx/CMakeLists.txt
             :language: cmake
 
       .. tab:: Fortran
 
-         .. literalinclude:: exercises/hello-library/fortran/CMakeLists.txt
+         .. literalinclude:: examples/hello-library/fortran/CMakeLists.txt
             :language: cmake
 
    Which solution did you like better? Discuss the pros and cons.
