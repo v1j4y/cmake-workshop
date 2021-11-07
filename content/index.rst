@@ -1,6 +1,5 @@
-CMake hands-on workshop
-=======================
-
+CMake introduction and hands-on workshop
+========================================
 
 CMake is a language-agnostic, cross-platform build tool and is nowadays the *de
 facto* standard,  with many large projects using it to reliably build, test, and
