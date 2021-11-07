@@ -414,13 +414,14 @@ visible at the level at which it is declared and all higher levels.
 
       .. tab:: Bad example
 
-         This is a bad example that works (on Linux at least) although it
-         looks more compact and possibly neater at first sight.  Can you
-         point out the problems that you see or anticipate with this
-         structure?
+         **This is a bad example** although it might look more compact and possibly
+         neater at first sight.  It probably also works, at least on Linux,
+         probably not on macOS and Windows.  Can you point out the problems
+         that you see or anticipate with this structure?
 
          .. literalinclude:: exercises/bad-example-using-variables/CMakeLists.txt
             :language: cmake
+            :emphasize-lines: 3
 
    .. solution::
 

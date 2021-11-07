@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(example LANGUAGES CXX)
-
 # note that the code below is a bad example only used for a discussion
+project(bad-example LANGUAGES CXX)
 
 add_definitions(-DMY_DEFINITION)
 
