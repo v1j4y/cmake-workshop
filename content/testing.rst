@@ -46,7 +46,7 @@ There are two steps to perform to integrate your CMake build system with the CTe
 .. typealong:: Our first test project
 
    We will build a simple library to sum integers and an executable using this library.
-   This example is in ``examples/testing/``.
+   This example is in ``content/examples/testing/``.
 
    If you compile the code (please try!) you get an executable that can sum integers
    given on the command line:
@@ -197,7 +197,7 @@ Exercises: testing with CTest
 
 .. challenge:: Exercise: running tests in parallel and understanding the COST property
 
-   This example is in ``examples/testing-parallel/``.
+   This example is in ``content/examples/testing-parallel/``.
 
    1. Build the project and run the test set with ``ctest``, observe the order of tests.
 

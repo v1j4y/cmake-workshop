@@ -121,7 +121,7 @@ demonstrate what visibility levels is to see it in action.
 
 We will demonstrate this with a hello world example where somebody went a bit
 too far with modularity and where we have split the code into 3 libraries and
-the main function (``examples/property-visibility/``)::
+the main function (``content/examples/property-visibility/``)::
 
   .
   ├── CMakeLists.txt
@@ -272,7 +272,7 @@ visible at the level at which it is declared and all higher levels.
    which reuses an external project.
    Your goal is to:
 
-   1. Build the main executable at ``examples/multiple-folders/problem/``.
+   1. Build the main executable at ``content/examples/multiple-folders/problem/``.
 
    2. Where is it located in the build tree? Remember
       that CMake generates a build tree mirroring the source tree.
@@ -305,7 +305,7 @@ visible at the level at which it is declared and all higher levels.
 
       .. tab:: C++
 
-         You want to arrive at this (``examples/multiple-folders/solution/cxx/``) structure:
+         You want to arrive at this (``content/examples/multiple-folders/solution/cxx/``) structure:
 
          .. code-block:: text
 
@@ -341,7 +341,7 @@ visible at the level at which it is declared and all higher levels.
 
       .. tab:: Fortran
 
-         You want to arrive at this (``examples/multiple-folders/solution/fortran/``) structure:
+         You want to arrive at this (``content/examples/multiple-folders/solution/fortran/``) structure:
 
          .. code-block:: text
 

@@ -82,7 +82,7 @@ generates the file ``config.h``:
 
 .. challenge:: Exercise: record more useful information using configure_file
 
-   Your goal is to adapt the above example (``examples/configure-file/problem/``)
+   Your goal is to adapt the above example (``content/examples/configure-file/problem/``)
    and make it possible to get the compiler and compiler version into the
    output of your code:
 
