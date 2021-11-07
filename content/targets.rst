@@ -4,11 +4,6 @@
 Target-based build systems with CMake
 =====================================
 
-.. questions::
-
-   - How can we handle more complex projects with CMake?
-   - What exactly are **targets** in the CMake domain-specific language (DSL)?
-
 .. objectives::
 
    - Learn that the basic elements in CMake are *not* variables, *but* targets.
