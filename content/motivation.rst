@@ -216,3 +216,18 @@ This means we can implement "everything" in CMake and there will be many ways
 to achieve any solution. But the language will also not prevent us from
 implementing complicated contraptions. In the tutorial/workshop part we will
 revisit some good and less good solutions.
+
+
+What problems to expect when moving to CMake
+--------------------------------------------
+
+- CMake has so many good defaults and most of the time just works and it can feel
+  a bit magic.
+- The language and the module ecosystem offers all the possibilities and it is
+  easy to go a bit overboard.
+- With more CMake code complexity one can then compromise some portability and
+  maintainability.
+- When things stop working, then it can be difficult for beginners to know where
+  to look and where to edit.
+- For larger development teams it is yet another tool: the "better" tool we
+  don't know compared to the "worse" tool that everybody understands.
