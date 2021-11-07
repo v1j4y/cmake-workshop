@@ -199,7 +199,13 @@ other targets (executables or other libraries) with |target_link_libraries|.
 
 .. discussion:: Discussion: Granulatity of libraries
 
-   Write me ...
+   How granular should we organize our targets?
+
+   - Collect all sources into one executable?
+   - One library?
+   - Many libraries?
+
+   Discuss pros and cons and how you do this in your projects.
 
 
 .. keypoints::
