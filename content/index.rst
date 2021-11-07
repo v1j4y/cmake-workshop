@@ -66,7 +66,7 @@ Topics not covered
 
 .. note::
 
-   You can find all examples, exercises, and solution at https://github.com/coderefinery/cmake-workshop.
+   You can find all examples, exercises, and solutions at https://github.com/coderefinery/cmake-workshop.
    In there navigate to `content/examples/ <https://github.com/coderefinery/cmake-workshop/tree/main/content/examples>`__.
 
 
@@ -111,7 +111,6 @@ Timing still being adjusted. It's still too much material:
    :caption: Introduction
 
    motivation
-   cmake-syntax
    quick-tour
 
 
