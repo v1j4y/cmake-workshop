@@ -433,6 +433,10 @@ visible at the level at which it is declared and all higher levels.
       - Compile definition ``-DMY_DEFINITION`` affects entire project.
       - Also the include directories and library link line settings affect the entire project.
       - The order of ``link_libraries`` matters.
+      - Library names are hard-coded and it will not work on macOS or Windows where libraries
+        have different names.
+      - Library names have been hard-coded to static libraries and it will be more difficult now
+        for us to switch between static or dynamic libraries.
       - If you rename a library you suddenly need to edit more places than in
         the example using targets.
       - ``CMakeLists.txt`` became more brittle to order of lines.
