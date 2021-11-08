@@ -218,7 +218,7 @@ We can define compiler flags for different compilers and build types:
 .. code-block:: cmake
 
    if(CMAKE_Fortran_COMPILER_ID MATCHES Intel)
-       set(CMAKE_Fortran_FLAGS         "${CMAKE_Fortran_FLAGS} -Wall"
+       set(CMAKE_Fortran_FLAGS         "${CMAKE_Fortran_FLAGS} -Wall")
        set(CMAKE_Fortran_FLAGS_DEBUG   "-g -traceback")
        set(CMAKE_Fortran_FLAGS_RELEASE "-O3 -ip -xHOST")
    endif()
